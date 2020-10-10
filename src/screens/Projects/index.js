@@ -36,7 +36,6 @@ const Tarefas = () => {
     try {
       const response = await api.get("projetos");
       
-      
       setTasks(response.data)
       
     } catch (err) {
