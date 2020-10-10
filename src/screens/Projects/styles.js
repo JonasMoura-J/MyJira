@@ -19,7 +19,6 @@ export const TaskContainer = styled.View`
 `;
 
 export const Tasks = styled.ScrollView`
-
 `;
 
 export const Task = styled.View`
