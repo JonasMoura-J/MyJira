@@ -11,10 +11,10 @@ export const Container = styled.SafeAreaView`
 export const TaskContainer = styled.View`
   flex-direction:row;
   justify-content:space-between;
-  background-color: ${props => props.finalizado ? "#f9f9f9" : "#e6e6e6"};
+  background-color: #e3e3e3;
   padding:15px 20px;
   margin-top:10px;
-  border-radius:5px;
+  border-radius:30px;
   flex:1;
 `;
 
@@ -27,10 +27,12 @@ export const Task = styled.View`
 
 export const TaskText = styled.Text`
   font-size:20px;
+  width: 70%;
 `;
 
 export const TaskActions = styled.View`
   flex-direction:row;
+  
 `;
 
 export const FormEnviar = styled.View`
@@ -60,4 +62,7 @@ export const Button = styled.TouchableOpacity`
 
 export const TextButton = styled.Text`
   font-size:20px;
+`;
+export const BoxIcon = styled.TouchableOpacity`
+  margin-left:10px;
 `;

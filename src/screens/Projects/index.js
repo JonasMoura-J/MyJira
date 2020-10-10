@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View } from 'react-native';
 
-import  {MaterialCommunityIcons} from '@expo/vector-icons';
-
 import {
   Container,
   Task,
@@ -13,10 +11,12 @@ import {
   TextButton,
   FormEnviar,
   Tasks,
-  TaskText
+  TaskText,
+  BoxIcon
 } from './styles'
 
 import api from '../../../services/api';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 // import { UsuarioContext } from '../../contexts/user';
 
@@ -119,25 +119,28 @@ const Tarefas = () => {
 
         {tasks.map(task => (
           <TaskContainer key={task.id} finalizado={task.concluido}>
-            <Task >
-              <TaskText>{'olars'}</TaskText>
-            </Task>
+           
+              <TaskText>{task.descricao}</TaskText>
+              
             <TaskActions>
-
-              <MaterialCommunityIcons
-                name="delete-outline"
-                color="#333"
-                size={32}
+            <BoxIcon>
+              <Icon
+                name="trash-alt"
+                color="#ca0000"
+                size={30}
                 onPress={() => { handleRemoveTask(task) }}
               />
-
-              <MaterialCommunityIcons
-                name={task.concluido ? "check-circle-outline" : "circle-outline"}
-                color={task.concluido ? "#04d361" : "#ff0000"}
-                size={32}
-                onPress={() => { handleTasks(task) }}
+            </BoxIcon>
+            <BoxIcon>
+              <Icon
+                name={task.concluido ? "check" : "clock"}
+                color={task.concluido ? "#a4d43a" : "#000"}
+                size={30}
+                onPress={() => { handleTasks(task)}}
               /> 
+            </BoxIcon>
              </TaskActions>
+            
            </TaskContainer>
 
         )
@@ -145,7 +148,7 @@ const Tarefas = () => {
       </Tasks>
     </Container>
 
-
+        
   )
 
 }

@@ -1,48 +1,48 @@
 {
-    "usuarios": [
-      {
-        "id": 1,
-        "nome": "Antonio Podgorski",
-        "email": "antonio@domob.me",
-        "password": "123123"
-      },
-      {
-        "id": 2,
-        "nome": "Cláudio Leal (backupme)",
-        "email": "claudio@claudio.com",
-        "password": "111111"
-      }
-    ],
-    "projetos": [
-      {
-        "descricao": "Projeto Final",
-        "id": 1
-      }
-    ],
-    "tarefas": [
-      {
-        "descricao": "Aprender react",
-        "projetoId": 1,
-        "usuarioId": 1,
-        "id": 1,
-        "concluido": true
-      },
-      {
-        "descricao": "Aprender css",
-        "projetoId": 1,
-        "usuarioId": 1,
-        "id": 3,
-        "concluido": true
-      },
-      {
-        "descricao": "Vjdj",
-        "id": 4,
-        "concluido": true
-      },
-      {
-        "descricao": "Isso é um teste ",
-        "concluido": false,
-        "id": 5
-      }
-    ]
-  }
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Antonio Podgorski",
+      "email": "antonio@domob.me",
+      "password": "123123"
+    },
+    {
+      "id": 2,
+      "nome": "Cláudio Leal (backupme)",
+      "email": "claudio@claudio.com",
+      "password": "111111"
+    }
+  ],
+  "projetos": [
+    {
+      "descricao": "Projeto Final",
+      "id": 1
+    }
+  ],
+  "tarefas": [
+    {
+      "descricao": "Aprender react",
+      "projetoId": 1,
+      "usuarioId": 1,
+      "id": 1,
+      "concluido": true
+    },
+    {
+      "descricao": "Aprender css",
+      "projetoId": 1,
+      "usuarioId": 1,
+      "id": 3,
+      "concluido": true
+    },
+    {
+      "descricao": "Vjdj",
+      "id": 4,
+      "concluido": true
+    },
+    {
+      "descricao": "Isso é um teste ",
+      "id": 5,
+      "concluido": true
+    }
+  ]
+}
