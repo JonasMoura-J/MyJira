@@ -8,11 +8,12 @@ import {
     InputArea,
     SignMessageButton,
     SignMessageButtonText,
-    SignMessageButtonTextBold
+    SignMessageButtonTextBold,
+    Imagem
 } from './styles'; 
 
 
-import Logo from '../../assets/barber.svg';
+import agenda from '../../assets/agenda.png';
 import EmailIcon from '../../assets/email.svg';
 import LockIcon from '../../assets/lock.svg';
 import PersonIcon from '../../assets/person.svg';
@@ -32,7 +33,7 @@ export default () => {
 
     return (
         <Container>
-            <Logo width="100%" height="160"/>
+            <Imagem source={agenda} style ={{height: 100, width: 100}}/>
             <InputArea>
                 <SignInput 
                     IconSvg={PersonIcon}
