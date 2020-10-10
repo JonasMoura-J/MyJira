@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View } from 'react-native';
 
-import  Icon from 'react-native-vector-icons';
-Icon.loadFont();
+import  {MaterialCommunityIcons} from '@expo/vector-icons';
+
 import {
   Container,
   Task,
@@ -31,9 +31,9 @@ const Tarefas = () => {
 
     try {
       const response = await api.get("tarefas");
-      const res = await response.data;
       
-      setTasks(res)
+      
+      setTasks(response.data)
       
     } catch (err) {
       console.warn("Falha ao recuperar as tarefas.")
@@ -120,20 +120,20 @@ const Tarefas = () => {
         {tasks.map(task => (
           <TaskContainer key={task.id} finalizado={task.concluido}>
             <Task >
-              <Text>{task.descricao}</Text>
+              <TaskText>{'olars'}</TaskText>
             </Task>
             <TaskActions>
 
-              <Icon
+              <MaterialCommunityIcons
                 name="delete-outline"
                 color="#333"
                 size={32}
                 onPress={() => { handleRemoveTask(task) }}
               />
 
-              <Icon
-                name={task.concluido ? "add" : "circle-outline"}
-                color={task.concluido ? "#04d361" : "#333"}
+              <MaterialCommunityIcons
+                name={task.concluido ? "check-circle-outline" : "circle-outline"}
+                color={task.concluido ? "#04d361" : "#ff0000"}
                 size={32}
                 onPress={() => { handleTasks(task) }}
               /> 
