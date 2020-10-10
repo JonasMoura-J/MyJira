@@ -36,7 +36,6 @@ const Tarefas = () => {
     } catch (err) {
       console.warn("Falha ao recuperar as tarefas.")
     }
-
   }
 
   const handleAddTasks = async () => {

@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
-  background-color:#fff;
-  flex:1;
-  /* justify-content:center; */
-  padding:0 20px;
+export const Container = styled.SafeAreaView`
+    background-color: #1c1c1c;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
 `;
 
 
@@ -36,25 +36,27 @@ export const TaskActions = styled.View`
 
 export const FormEnviar = styled.View`
   flex-direction:row;
+  margin-top:10px;
 `;
 
 export const Input = styled.TextInput`
   border:1px solid #333;
   height:60px;
   flex:1;
-  border-radius:5px;
+  border-radius: 30px;
   padding:0 20px;
+  background-color: #e3e3e3;
+  margin-left: 5px;
 `;
 
 export const Button = styled.TouchableOpacity`
-  width:100px;
-  background-color:#04d361;
-  height:60px;
-  border-radius:5px;
-  justify-content:center;
-  align-items:center;
-  margin-left:10px;
-
+    height: 60px;
+    width: 100px;
+    margin: 0 5px;
+    background-color: #a4d43a;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const TextButton = styled.Text`
