@@ -14,9 +14,11 @@ import {
   TaskText,
   BoxIcon,
   ProgressContainer
-} from '../Projects/styles'
+} from '../Projetos/styles'
 
 import api from '../../../services/api';
+import { useIsFocused } from '@react-navigation/native';
+
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import ProgressCircle from 'react-native-progress-circle';
@@ -24,7 +26,19 @@ import ProgressCircle from 'react-native-progress-circle';
 // import { UsuarioContext } from '../../contexts/user';
 
 const Tarefas = () => {
+  const focoPagina = useIsFocused();
 
+  const [percentual, setPercentual] = useState(0);
+
+  const percentualTarefasRealizadas = async () => {
+    const resultado = await api.get("tarefas");
+    const tarefas = resultado.data
+    const tarefas_realizadas = tarefas.filter(tarefa => tarefa.concluido)
+
+    const calculo_percentual = (tarefas_realizadas.length / tarefas.length) * 100
+
+    setPercentual(calculo_percentual)
+  }
 
 //   const usuario = useContext(UsuarioContext);
 

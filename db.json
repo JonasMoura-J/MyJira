@@ -16,21 +16,23 @@
   "projetos": [
     {
       "descricao": "Projeto Final",
-      "id": 1
-    }
-  ],
-  "tarefas": [
-    {
-      "descricao": "Aprender react",
-      "projetoId": 1,
-      "usuarioId": 1,
       "id": 1,
       "concluido": true
     },
     {
-      "descricao": "Aprender css",
-      "projetoId": 1,
-      "usuarioId": 1,
+      "descricao": "aaaa",
+      "id": 2,
+      "concluido": true
+    }
+  ],
+  "tarefas": [
+    {
+      "descricao": "Projeto Final",
+      "id": 1,
+      "concluido": true
+    },
+    {
+      "descricao": "alou",
       "id": 3,
       "concluido": true
     },
@@ -58,6 +60,21 @@
       "descricao": "dsvsdv",
       "concluido": false,
       "id": 8
+    },
+    {
+      "descricao": "G",
+      "concluido": false,
+      "id": 9
+    },
+    {
+      "descricao": "tarefa",
+      "concluido": false,
+      "id": 10
+    },
+    {
+      "descricao": "alou",
+      "concluido": false,
+      "id": 11
     }
   ]
 }

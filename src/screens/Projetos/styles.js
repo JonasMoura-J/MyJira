@@ -59,6 +59,11 @@ export const Button = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
 `;
+export const ButtonHidden = styled.TouchableOpacity`
+    height: 0px;
+    width: 0px;
+    
+`;
 
 export const TextButton = styled.Text`
   font-size:20px;

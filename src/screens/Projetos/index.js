@@ -13,20 +13,42 @@ import {
   Tasks,
   TaskText,
   BoxIcon,
-  ProgressContainer
+  ProgressContainer,
+  ButtonHidden
 } from './styles'
 
 import api from '../../../services/api';
+import { useIsFocused } from '@react-navigation/native';
+
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import ProgressCircle from 'react-native-progress-circle';
 
 // import { UsuarioContext } from '../../contexts/user';
 
-const Tarefas = () => {
+const Projetos = () => {
 
 
 //   const usuario = useContext(UsuarioContext);
+    const focoPagina = useIsFocused();
+
+    const [percentual, setPercentual] = useState(0);
+
+    const percentualProjetosRealizados = async () => {
+      const resultado = await api.get("projetos");
+
+      const projetos = resultado.data
+      
+      const projetos_realizados = projetos.filter(projeto => projeto.concluido)
+      
+      const calculo_percentual = (projetos_realizados.length / projetos.length) * 100
+      
+      setPercentual(calculo_percentual)
+    }
+    
+    useEffect(() => {
+      percentualProjetosRealizados()
+    },[])
 
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
@@ -35,20 +57,20 @@ const Tarefas = () => {
 
     try {
       const response = await api.get("projetos");
-      
+
       setTasks(response.data)
       
     } catch (err) {
-      console.warn("Falha ao recuperar as tarefas.")
+      console.warn("Falha ao recuperar os projetos.")
     }
   }
 
   const handleAddTasks = async () => {
-
+    
     if (newTask == "") {
       // if (newTask.isEmpty()) {
       // if (!(!!newTask)) {
-      console.warn("você deve preencher a tarefa")
+      console.warn("você deve preencher um projeto")
       return
     }
     const params = {
@@ -57,24 +79,26 @@ const Tarefas = () => {
     }
 
     try {
-      await api.post("tarefas", params);
+      await api.post("projetos", params);
       setNewTask("");
       loadTasks();
     } catch (err) {
-      console.warn("erro ao salvar a tarefa")
+      console.warn("erro ao salvar o projeto")
     }
 
   }
 
   const handleTasks = async (task) => {
-
+    
     const params = {
       ...task,
       concluido: !task.concluido
     }
+  
 
     try {
-      await api.put(`tarefas/${task.id}`, params);
+      
+      await api.put(`projetos/${task.id}`, params);
       loadTasks();
     } catch (err) {
 
@@ -82,12 +106,12 @@ const Tarefas = () => {
   }
 
   const handleRemoveTask = async ({ id }) => {
-
+    
     try {
-      await api.delete(`tarefas/${id}`);
+      await api.delete(`projetos/${id}`);
       loadTasks();
     } catch (err) {
-      console.warn("erro ao deletar tarefa")
+      console.warn("erro ao deletar projeto")
     }
     // console.warn(`delete ${id}`)
   }
@@ -106,34 +130,33 @@ const Tarefas = () => {
   return (
     <Container>
       
-      
-    
       <FormEnviar>
         <Input
-          placeholder="Digitar a tarefa ..."
+          placeholder="Incluir projeto..."
           onChangeText={(letras) => { setNewTask(letras) }}
           value={newTask}
         />
         <Button onPress={handleAddTasks}>
           <TextButton>Criar</TextButton>
         </Button>
+        <ButtonHidden onPress ={percentualProjetosRealizados()}/>
+    
       </FormEnviar>
 
       <ProgressContainer>
         <ProgressCircle
-          percent={30}
+          percent={percentual}
           radius={70}
           borderWidth={7}
           color="#3aa4d4"
           shadowColor="#999"
           bgColor="#1c1c1c"
         >
-        <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{30}</Text>
+        <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{`${percentual.toFixed(0)}%`}</Text>
       </ProgressCircle>
     </ProgressContainer>
 
       <Tasks showsVerticalScrollIndicator={false}>
-
 
         {tasks.map(task => (
           <TaskContainer key={task.id} finalizado={task.concluido}>
@@ -160,7 +183,6 @@ const Tarefas = () => {
              </TaskActions>
             
            </TaskContainer>
-
         )
         )}
       </Tasks>
@@ -171,4 +193,4 @@ const Tarefas = () => {
 
 }
 
-export default Tarefas;
+export default Projetos;
