@@ -14,7 +14,7 @@ import {
   TaskText,
   BoxIcon,
   ProgressContainer
-} from './styles'
+} from '../Projects/styles'
 
 import api from '../../../services/api';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -34,7 +34,7 @@ const Tarefas = () => {
   const loadTasks = async () => {
 
     try {
-      const response = await api.get("projetos");
+      const response = await api.get("tarefas");
       
       
       setTasks(response.data)
@@ -111,7 +111,7 @@ const Tarefas = () => {
     
       <FormEnviar>
         <Input
-          placeholder="Digitar a tarefa ..."
+          placeholder="Incluir projeto..."
           onChangeText={(letras) => { setNewTask(letras) }}
           value={newTask}
         />
