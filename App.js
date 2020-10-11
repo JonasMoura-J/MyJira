@@ -1,14 +1,17 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import MainStack from './src/stack/MainStack';
+import Routes from './routes';
+import {UsuarioProvider} from './contexts/user'
 
 
 export default () => {
   return (
-    <NavigationContainer>
-      <MainStack />
-    </NavigationContainer>
+
+      <UsuarioProvider>
+        <Routes />
+      </UsuarioProvider>
+    
 
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import SignInput from '../../components/SignInput';
 import { 
@@ -17,12 +17,16 @@ import agenda from '../../assets/agenda.png';
 import EmailIcon from '../../assets/email.svg';
 import LockIcon from '../../assets/lock.svg';
 
+import { UsuarioContext } from '../../../contexts/user';
 
 export default () => {
+
+    const { signIn } = useContext(UsuarioContext);
+
     const navigation = useNavigation();
 
     const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+    const [password, setPassword] = useState('');
     
     const handleMessageButtonClick = () => {
         navigation.reset({
@@ -30,6 +34,19 @@ export default () => {
         });
     }
 
+    const handleSubmit = async () => {
+
+        try {
+          await signIn(email, password)
+        } catch (err) {
+          console.warn('ola erro ao realizar a requisição')
+
+        // Auth
+    
+        // console.warn(email, password)
+        // setCarregando(false)
+      }
+    }
     return (
         <Container>
             <Imagem source={agenda} style ={{height: 100, width: 100}}/>
@@ -44,12 +61,12 @@ export default () => {
                 <SignInput 
                     IconSvg={LockIcon}
                     placeholder="Digite sua senha"
-                    value={senha}
-                    onChangeText={texto => setSenha(texto)}
+                    value={password}
+                    onChangeText={texto => setPassword(texto)}
                     password={true}
                 />
 
-                <CustomButton>
+                <CustomButton onPress={handleSubmit} disabled={!password || !email}>
                     <CustomButtonText>LOGIN</CustomButtonText>
                 </CustomButton>
             </InputArea>
@@ -61,4 +78,5 @@ export default () => {
 
         </Container>
     );
+    
 }

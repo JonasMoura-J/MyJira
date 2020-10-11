@@ -2,9 +2,9 @@
   "usuarios": [
     {
       "id": 1,
-      "nome": "Antonio Podgorski",
-      "email": "antonio@domob.me",
-      "password": "123123"
+      "nome": "Jo",
+      "email": "jo@g.com",
+      "password": "123"
     },
     {
       "id": 2,
