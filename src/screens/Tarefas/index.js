@@ -16,6 +16,8 @@ import {
   ProgressContainer
 } from '../Projetos/styles'
 
+import { UsuarioContext } from '../../../contexts/user';
+
 import api from '../../../services/api';
 import { useIsFocused } from '@react-navigation/native';
 
@@ -26,6 +28,8 @@ import ProgressCircle from 'react-native-progress-circle';
 // import { UsuarioContext } from '../../contexts/user';
 
 const Tarefas = () => {
+  const { signOut } = useContext(UsuarioContext)
+
   const focoPagina = useIsFocused();
 
   const [percentual, setPercentual] = useState(0);
@@ -131,6 +135,9 @@ const Tarefas = () => {
         />
         <Button onPress={handleAddTasks}>
           <TextButton>Criar</TextButton>
+        </Button>
+        <Button onPress={signOut}>
+          <TextButton>Sair</TextButton>
         </Button>
       </FormEnviar>
 

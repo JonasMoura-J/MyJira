@@ -132,7 +132,7 @@ const Projetos = () => {
   const navigation = useNavigation();
   const handleProject = () => {
     navigation.reset({
-      routes:[{name: 'AFazer'}]
+      routes:[{name: 'Tarefas'}]
   });
   }
 
