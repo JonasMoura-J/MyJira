@@ -13,11 +13,9 @@ import {
   Tasks,
   TaskText,
   BoxIcon,
-  ProgressContainer,
-  ButtonHidden,
-  ButtonProjects
-} from './styles'
-import { useNavigation } from '@react-navigation/native';
+  ProgressContainer
+} from '../Projetos/styles'
+
 import api from '../../../services/api';
 import { useIsFocused } from '@react-navigation/native';
 
@@ -27,29 +25,22 @@ import ProgressCircle from 'react-native-progress-circle';
 
 // import { UsuarioContext } from '../../contexts/user';
 
-const Projetos = () => {
+const Tarefas = () => {
+  const focoPagina = useIsFocused();
 
+  const [percentual, setPercentual] = useState(0);
+
+  const percentualTarefasRealizadas = async () => {
+    const resultado = await api.get("tarefas");
+    const tarefas = resultado.data
+    const tarefas_realizadas = tarefas.filter(tarefa => tarefa.concluido)
+
+    const calculo_percentual = (tarefas_realizadas.length / tarefas.length) * 100
+
+    setPercentual(calculo_percentual)
+  }
 
 //   const usuario = useContext(UsuarioContext);
-    const focoPagina = useIsFocused();
-
-    const [percentual, setPercentual] = useState(0);
-
-    const percentualProjetosRealizados = async () => {
-      const resultado = await api.get("projetos");
-
-      const projetos = resultado.data
-      
-      const projetos_realizados = projetos.filter(projeto => projeto.concluido)
-      
-      const calculo_percentual = (projetos_realizados.length / projetos.length) * 100
-      
-      setPercentual(calculo_percentual)
-    }
-    
-    useEffect(() => {
-      percentualProjetosRealizados()
-    },[])
 
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
@@ -57,21 +48,22 @@ const Projetos = () => {
   const loadTasks = async () => {
 
     try {
-      const response = await api.get("projetos");
-
+      const response = await api.get("tarefas");
+      
+      
       setTasks(response.data)
       
     } catch (err) {
-      console.warn("Falha ao recuperar os projetos.")
+      console.warn("Falha ao recuperar as tarefas.")
     }
   }
 
   const handleAddTasks = async () => {
-    
+
     if (newTask == "") {
       // if (newTask.isEmpty()) {
       // if (!(!!newTask)) {
-      console.warn("você deve preencher um projeto")
+      console.warn("você deve preencher a tarefa")
       return
     }
     const params = {
@@ -80,26 +72,24 @@ const Projetos = () => {
     }
 
     try {
-      await api.post("projetos", params);
+      await api.post("tarefas", params);
       setNewTask("");
       loadTasks();
     } catch (err) {
-      console.warn("erro ao salvar o projeto")
+      console.warn("erro ao salvar a tarefa")
     }
 
   }
 
   const handleTasks = async (task) => {
-    
+
     const params = {
       ...task,
       concluido: !task.concluido
     }
-  
 
     try {
-      
-      await api.put(`projetos/${task.id}`, params);
+      await api.put(`tarefas/${task.id}`, params);
       loadTasks();
     } catch (err) {
 
@@ -107,12 +97,12 @@ const Projetos = () => {
   }
 
   const handleRemoveTask = async ({ id }) => {
-    
+
     try {
-      await api.delete(`projetos/${id}`);
+      await api.delete(`tarefas/${id}`);
       loadTasks();
     } catch (err) {
-      console.warn("erro ao deletar projeto")
+      console.warn("erro ao deletar tarefa")
     }
     // console.warn(`delete ${id}`)
   }
@@ -128,17 +118,11 @@ const Projetos = () => {
     // console.warn(newTask)
   }, [newTask])
 
-  //Navegação para as tarefas de projetos
-  const navigation = useNavigation();
-  const handleProject = () => {
-    navigation.reset({
-      routes:[{name: 'Tarefas'}]
-  });
-  }
-
   return (
     <Container>
       
+      
+    
       <FormEnviar>
         <Input
           placeholder="Incluir projeto..."
@@ -148,27 +132,25 @@ const Projetos = () => {
         <Button onPress={handleAddTasks}>
           <TextButton>Criar</TextButton>
         </Button>
-        <ButtonHidden onPress ={percentualProjetosRealizados()}/>
-    
       </FormEnviar>
 
       <ProgressContainer>
         <ProgressCircle
-          percent={percentual}
+          percent={30}
           radius={70}
           borderWidth={7}
           color="#3aa4d4"
           shadowColor="#999"
           bgColor="#1c1c1c"
         >
-        <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{`${percentual.toFixed(0)}%`}</Text>
+        <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{30}</Text>
       </ProgressCircle>
     </ProgressContainer>
 
       <Tasks showsVerticalScrollIndicator={false}>
 
+
         {tasks.map(task => (
-        <ButtonProjects onPress={handleProject}>
           <TaskContainer key={task.id} finalizado={task.concluido}>
            
               <TaskText>{task.descricao}</TaskText>
@@ -179,9 +161,8 @@ const Projetos = () => {
                 name="trash-alt"
                 color="#ca0000"
                 size={30}
-                onPress={() => {handleRemoveTask(task)}}
+                onPress={() => { handleRemoveTask(task) }}
               />
-
             </BoxIcon>
             <BoxIcon>
               <Icon
@@ -189,12 +170,12 @@ const Projetos = () => {
                 color={task.concluido ? "#a4d43a" : "#000"}
                 size={30}
                 onPress={() => { handleTasks(task)}}
-              />
+              /> 
             </BoxIcon>
              </TaskActions>
             
            </TaskContainer>
-         </ButtonProjects>
+
         )
         )}
       </Tasks>
@@ -205,4 +186,4 @@ const Projetos = () => {
 
 }
 
-export default Projetos;
+export default Tarefas;

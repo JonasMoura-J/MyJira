@@ -17,12 +17,18 @@
     {
       "descricao": "Projeto Final",
       "id": 1,
-      "concluido": true
+      "concluido": true,
+      "tarefas": [
+        {
+          "descricao": "fazer projeto",
+          "id": 1
+        }
+      ]
     },
     {
-      "descricao": "aaaa",
-      "id": 2,
-      "concluido": true
+      "descricao": "O Raphael é mau",
+      "concluido": false,
+      "id": 2
     }
   ],
   "tarefas": [
@@ -48,13 +54,13 @@
     },
     {
       "descricao": "sdvsdvdv",
-      "concluido": false,
-      "id": 6
+      "id": 6,
+      "concluido": true
     },
     {
       "descricao": "sdvsdvsd",
-      "concluido": false,
-      "id": 7
+      "id": 7,
+      "concluido": true
     },
     {
       "descricao": "dsvsdv",

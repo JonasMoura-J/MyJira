@@ -59,10 +59,6 @@ export const Button = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
 `;
-export const ButtonHidden = styled.TouchableOpacity`
-    height: 0px;
-    width: 0px;
-`;
 
 export const TextButton = styled.Text`
   font-size:20px;
@@ -72,8 +68,4 @@ export const BoxIcon = styled.TouchableOpacity`
 `;
 export const ProgressContainer = styled.View`
   margin: 30px 0 2px 0;
-`;
-export const ButtonProjects = styled.TouchableOpacity`
-  width:100%;
-  height:70px;
 `;
