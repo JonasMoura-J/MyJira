@@ -6,12 +6,13 @@ import SignIn from '../screens/SignIn';
 import SignUp from '../screens/SignUp';
 import Projetos from '../screens/Projetos';
 import Tarefas from '../screens/Tarefas';
+import AFazer from '../screens/Projetos/AFazer';
 
 const Stack = createStackNavigator();
 
 export default () => (
     <Stack.Navigator
-        initialRouteName="Projetos"
+        initialRouteName="Splash"
         screenOptions={{
             headerShown: false
         }}    
@@ -21,6 +22,7 @@ export default () => (
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Tarefas" component={Tarefas} />
         <Stack.Screen name="Projetos" component={Projetos} />
+        <Stack.Screen name="AFazer" component={AFazer} />
 
     </Stack.Navigator>
 

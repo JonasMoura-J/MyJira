@@ -17,18 +17,18 @@
     {
       "descricao": "Projeto Final",
       "id": 1,
-      "concluido": true,
-      "tarefas": [
+      "afazer": [
         {
           "descricao": "fazer projeto",
           "id": 1
         }
-      ]
+      ],
+      "concluido": false
     },
     {
       "descricao": "O Raphael é mau",
-      "concluido": false,
-      "id": 2
+      "id": 2,
+      "concluido": true
     }
   ],
   "tarefas": [

@@ -49,6 +49,4 @@ export const SignMessageButtonTextBold = styled.Text`
 
 export const Imagem = styled.Image`
     margin-right: 14px;
-    transform: rotate(45deg);
-    transition-timing-function: linear ;
 `;

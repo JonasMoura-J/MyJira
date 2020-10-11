@@ -125,7 +125,7 @@ const Tarefas = () => {
     
       <FormEnviar>
         <Input
-          placeholder="Incluir projeto..."
+          placeholder="Incluir Tarefas projeto..."
           onChangeText={(letras) => { setNewTask(letras) }}
           value={newTask}
         />

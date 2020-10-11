@@ -14,9 +14,10 @@ import {
   TaskText,
   BoxIcon,
   ProgressContainer
-} from '../Projetos/styles'
+} from './styles'
 
-import api from '../../../services/api';
+import api from '../../../../services/api';
+import {projetos} from '../../../../services/api';
 import { useIsFocused } from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -25,36 +26,35 @@ import ProgressCircle from 'react-native-progress-circle';
 
 // import { UsuarioContext } from '../../contexts/user';
 
-const Tarefas = () => {
+const AFazer = () => {
   const focoPagina = useIsFocused();
 
   const [percentual, setPercentual] = useState(0);
 
-  const percentualTarefasRealizadas = async () => {
-    const resultado = await api.get("tarefas");
-    const tarefas = resultado.data
-    const tarefas_realizadas = tarefas.filter(tarefa => tarefa.concluido)
-
-    const calculo_percentual = (tarefas_realizadas.length / tarefas.length) * 100
-
-    setPercentual(calculo_percentual)
-  }
-
-//   const usuario = useContext(UsuarioContext);
-
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
 
+  const percentualAFazerRealizados = async () => {
+    const resultado = await api.get("afazer");
+    const AFazer = resultado.data.afazer
+    const AFazer_realizadas = AFazer.filter(tarefa => tarefa.concluido)
+
+    const calculo_percentual = (AFazer_realizadas.length / AFazer.length) * 100
+
+    setPercentual(calculo_percentual)
+  }
+  
   const loadTasks = async () => {
 
     try {
-      const response = await api.get("tarefas");
-      
-      
-      setTasks(response.data)
+      const response = await api.get("projetos"); 
+      const AFazer = response.data
+      const {oi, ...oi2} = response.data
+      console.warn(oi)
+      setTasks(AFazer)
       
     } catch (err) {
-      console.warn("Falha ao recuperar as tarefas.")
+      console.warn("Falha ao recuperar as AFazer.")
     }
   }
 
@@ -72,9 +72,10 @@ const Tarefas = () => {
     }
 
     try {
-      await api.post("tarefas", params);
+      await api.post("afazer", params);
       setNewTask("");
       loadTasks();
+      percentualAFazerRealizados();
     } catch (err) {
       console.warn("erro ao salvar a tarefa")
     }
@@ -89,8 +90,9 @@ const Tarefas = () => {
     }
 
     try {
-      await api.put(`tarefas/${task.id}`, params);
+      await api.put(`afazer/${task.id}`, params);
       loadTasks();
+      percentualAFazerRealizados();
     } catch (err) {
 
     }
@@ -99,8 +101,9 @@ const Tarefas = () => {
   const handleRemoveTask = async ({ id }) => {
 
     try {
-      await api.delete(`tarefas/${id}`);
+      await api.delete(`afazer/${id}`);
       loadTasks();
+      percentualAFazerRealizados();
     } catch (err) {
       console.warn("erro ao deletar tarefa")
     }
@@ -110,6 +113,7 @@ const Tarefas = () => {
   //Apenas será executado uma única vez!
   useEffect(() => {
     loadTasks();
+    percentualAFazerRealizados();
   }, [])
 
   //Aerá executado toda vez que NewTask sofrer alterações
@@ -119,10 +123,8 @@ const Tarefas = () => {
   }, [newTask])
 
   return (
-    <Container>
-      
-      
-    
+    <Container>    
+          
       <FormEnviar>
         <Input
           placeholder="Incluir projeto..."
@@ -136,14 +138,14 @@ const Tarefas = () => {
 
       <ProgressContainer>
         <ProgressCircle
-          percent={30}
+          percent={percentual}
           radius={70}
           borderWidth={7}
           color="#3aa4d4"
           shadowColor="#999"
           bgColor="#1c1c1c"
         >
-        <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{30}</Text>
+        <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{`${percentual.toFixed(0)}%`}</Text>
       </ProgressCircle>
     </ProgressContainer>
 
@@ -151,7 +153,7 @@ const Tarefas = () => {
 
 
         {tasks.map(task => (
-          <TaskContainer key={task.id} finalizado={task.concluido}>
+          <TaskContainer key={task.id}>
            
               <TaskText>{task.descricao}</TaskText>
               
@@ -186,4 +188,4 @@ const Tarefas = () => {
 
 }
 
-export default Tarefas;
+export default AFazer;
