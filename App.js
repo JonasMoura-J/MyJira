@@ -7,11 +7,9 @@ import {UsuarioProvider} from './contexts/user'
 
 export default () => {
   return (
-
       <UsuarioProvider>
         <Routes />
       </UsuarioProvider>
     
-
   );
 }

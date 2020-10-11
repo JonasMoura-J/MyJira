@@ -4,7 +4,93 @@
       "id": 1,
       "nome": "jonas",
       "email": "jonas@gmail.com",
-      "password": "123"
+      "password": "123",
+      "tarefas": [
+        {
+          "descricao": "Projeto Final",
+          "id": 1,
+          "concluido": true
+        },
+        {
+          "descricao": "alou",
+          "id": 3,
+          "concluido": true
+        },
+        {
+          "descricao": "Vjdj",
+          "id": 4,
+          "concluido": true
+        },
+        {
+          "descricao": "Isso é um teste ",
+          "id": 5,
+          "concluido": true
+        },
+        {
+          "descricao": "sdvsdvdv",
+          "id": 6,
+          "concluido": true
+        },
+        {
+          "descricao": "sdvsdvsd",
+          "id": 7,
+          "concluido": true
+        },
+        {
+          "descricao": "dsvsdv",
+          "concluido": false,
+          "id": 8
+        },
+        {
+          "descricao": "G",
+          "concluido": false,
+          "id": 9
+        },
+        {
+          "descricao": "tarefa",
+          "concluido": false,
+          "id": 10
+        },
+        {
+          "descricao": "alou",
+          "concluido": false,
+          "id": 11
+        },
+        {
+          "descricao": "a",
+          "concluido": false,
+          "id": 12
+        },
+        {
+          "descricao": "a",
+          "concluido": false,
+          "id": 13
+        }
+      ],
+      "projetos": [
+        {
+          "descricao": "Projeto Final",
+          "id": 1,
+          "concluido": false,
+          "afazer": [
+            {
+              "descricao": "fazer projeto",
+              "id": 1
+            }
+          ] 
+        },
+        {
+          "descricao": "O Raphael é mau",
+          "id": 2,
+          "concluido": true,
+          "afazer": [
+            {
+              "descricao": "fazer projeto",
+              "id": 1
+            }
+          ]
+        }
+      ]
     },
     {
       "id": 2,
@@ -12,75 +98,6 @@
       "email": "claudio@claudio.com",
       "password": "111111"
     }
-  ],
-  "projetos": [
-    {
-      "descricao": "Projeto Final",
-      "id": 1,
-      "afazer": [
-        {
-          "descricao": "fazer projeto",
-          "id": 1
-        }
-      ],
-      "concluido": false
-    },
-    {
-      "descricao": "O Raphael é mau",
-      "id": 2,
-      "concluido": true
-    }
-  ],
-  "tarefas": [
-    {
-      "descricao": "Projeto Final",
-      "id": 1,
-      "concluido": true
-    },
-    {
-      "descricao": "alou",
-      "id": 3,
-      "concluido": true
-    },
-    {
-      "descricao": "Vjdj",
-      "id": 4,
-      "concluido": true
-    },
-    {
-      "descricao": "Isso é um teste ",
-      "id": 5,
-      "concluido": true
-    },
-    {
-      "descricao": "sdvsdvdv",
-      "id": 6,
-      "concluido": true
-    },
-    {
-      "descricao": "sdvsdvsd",
-      "id": 7,
-      "concluido": true
-    },
-    {
-      "descricao": "dsvsdv",
-      "concluido": false,
-      "id": 8
-    },
-    {
-      "descricao": "G",
-      "concluido": false,
-      "id": 9
-    },
-    {
-      "descricao": "tarefa",
-      "concluido": false,
-      "id": 10
-    },
-    {
-      "descricao": "alou",
-      "concluido": false,
-      "id": 11
-    }
   ]
+
 }

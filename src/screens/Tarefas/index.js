@@ -8,15 +8,16 @@ import {
   TaskActions,
   Input,
   Button,
+  Buttonsair,
   TextButton,
   FormEnviar,
   Tasks,
   TaskText,
   BoxIcon,
   ProgressContainer
-} from '../Projetos/styles'
+} from './styles'
 
-import { UsuarioContext } from '../../../contexts/user';
+
 
 import api from '../../../services/api';
 import { useIsFocused } from '@react-navigation/native';
@@ -25,10 +26,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import ProgressCircle from 'react-native-progress-circle';
 
-// import { UsuarioContext } from '../../contexts/user';
-
 const Tarefas = () => {
-  const { signOut } = useContext(UsuarioContext)
 
   const focoPagina = useIsFocused();
 
@@ -124,35 +122,30 @@ const Tarefas = () => {
 
   return (
     <Container>
-      
-      
-    
       <FormEnviar>
         <Input
-          placeholder="Incluir Tarefas projeto..."
+          placeholder="Incluir tarefas..."
           onChangeText={(letras) => { setNewTask(letras) }}
           value={newTask}
         />
         <Button onPress={handleAddTasks}>
           <TextButton>Criar</TextButton>
         </Button>
-        <Button onPress={signOut}>
-          <TextButton>Sair</TextButton>
-        </Button>
+        
       </FormEnviar>
 
-      <ProgressContainer>
-        <ProgressCircle
-          percent={30}
-          radius={70}
-          borderWidth={7}
-          color="#3aa4d4"
-          shadowColor="#999"
-          bgColor="#1c1c1c"
-        >
-        <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{30}</Text>
-      </ProgressCircle>
-    </ProgressContainer>
+        <ProgressContainer>
+          <ProgressCircle
+            percent={30}
+            radius={70}
+            borderWidth={7}
+            color="#3aa4d4"
+            shadowColor="#999"
+            bgColor="#1c1c1c"
+          >
+          <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{30}</Text>
+          </ProgressCircle>
+      </ProgressContainer>
 
       <Tasks showsVerticalScrollIndicator={false}>
 

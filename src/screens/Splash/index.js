@@ -15,7 +15,7 @@ export default () => {
                 //AsyncStorage
             } else {
                 setTimeout(function() {
-                    navigation.navigate('SignIn')
+                    navigation.navigate('Splash')
                 },3000)
             }
         }
