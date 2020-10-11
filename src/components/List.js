@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View } from 'react-native';
 
 import {
   Container,
-  Task,
   TaskContainer,
   TaskActions,
   Input,
@@ -13,7 +11,7 @@ import {
   Tasks,
   TaskText,
   BoxIcon,
-  ProgressContainer
+  Text
 } from '../screens/Projetos/styles'
 
 import api from '../../services/api';
@@ -21,7 +19,7 @@ import { useIsFocused } from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import ProgressCircle from 'react-native-progress-circle';
+import Progress from './Progress';
 
 // import { UsuarioContext } from '../../contexts/user';
 
@@ -138,18 +136,7 @@ const List = (props) => {
         </Button>
       </FormEnviar>
 
-      <ProgressContainer>
-        <ProgressCircle
-          percent={percentual}
-          radius={70}
-          borderWidth={7}
-          color="#3aa4d4"
-          shadowColor="#999"
-          bgColor="#1c1c1c"
-        >
-        <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{`${percentual.toFixed(0)}%`}</Text>
-      </ProgressCircle>
-    </ProgressContainer>
+        {(`${props.type}` == "tarefas") ? <Progress percent={percentual}/> : undefined}
 
       <Tasks showsVerticalScrollIndicator={false}>
 
