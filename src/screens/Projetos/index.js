@@ -112,6 +112,7 @@ const Projetos = () => {
 
   //Navegação para as tarefas de projetos
   const navigation = useNavigation();
+
   const handleProject = () => {
     navigation.reset({
       routes:[{name: 'AFazer'}]

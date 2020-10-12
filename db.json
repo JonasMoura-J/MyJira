@@ -74,7 +74,7 @@
           "concluido": false,
           "afazer": [
             {
-              "descricao": "fazer projeto",
+              "descricao": "fazer projeto2",
               "id": 1
             }
           ] 
@@ -85,7 +85,7 @@
           "concluido": false,
           "afazer": [
             {
-              "descricao": "fazer projeto",
+              "descricao": "fazer projeto6",
               "id": 1
             }
           ]
@@ -108,7 +108,7 @@
               "descricao": "Outra lista",
               "id": 1
             }
-          ] 
+          ]
         },
         {
           "descricao": "O Raphael é bom mau",
@@ -116,7 +116,7 @@
           "concluido": true,
           "afazer": [
             {
-              "descricao": "fazer projeto",
+              "descricao": "fazer projetoalujioh",
               "id": 1
             }
           ]

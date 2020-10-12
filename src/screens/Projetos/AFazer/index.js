@@ -17,7 +17,6 @@ import {
 } from './styles'
 
 import api from '../../../../services/api';
-import {projetos} from '../../../../services/api';
 import { useIsFocused } from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -123,8 +122,7 @@ const AFazer = () => {
   }, [newTask])
 
   return (
-    <Container>    
-          
+    <Container>
       <FormEnviar>
         <Input
           placeholder="Incluir projeto..."

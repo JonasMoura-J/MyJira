@@ -33,7 +33,6 @@ export default () => {
             routes:[{name: 'SignUp'}]
         });
     }
-
     // useEffect(() =>{ 
     //     signOut()
     // },[])

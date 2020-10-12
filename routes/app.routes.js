@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import Tarefas from '../src/screens/Tarefas';
 import Projetos from '../src/screens/Projetos';
@@ -12,6 +13,7 @@ const Tab = createBottomTabNavigator();
 const AppRoutes = () => {
 
   return (
+
         <Tab.Navigator
         initialRouteName="Tarefas"
         tabBarOptions={
@@ -34,6 +36,14 @@ const AppRoutes = () => {
                   )
                 }
               } />
+              <Tab.Screen
+                name="AFazer"
+                component={AFazer}
+                options={{
+                tabBarButton: () => null
+                //tabBarVisible: false, // if you don't want to see the tab bar
+                }}
+            />
 
             <Tab.Screen
             name="Tarefas"
@@ -63,8 +73,10 @@ const AppRoutes = () => {
                 )
             }
             } />
+        
            
         </Tab.Navigator>
+
 
   )
 }
