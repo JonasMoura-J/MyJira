@@ -74,8 +74,12 @@
           "concluido": false,
           "afazer": [
             {
-              "descricao": "fazer projeto2",
+              "descricao": "testando",
               "id": 1
+            },
+            {
+              "descricao": "alou",
+              "id": 2
             }
           ] 
         },
@@ -85,7 +89,7 @@
           "concluido": false,
           "afazer": [
             {
-              "descricao": "fazer projeto6",
+              "descricao": "outra coisa",
               "id": 1
             }
           ]

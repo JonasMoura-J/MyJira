@@ -175,15 +175,11 @@ const Tarefas = () => {
              </TaskActions>
             
            </TaskContainer>
-
         )
         )}
       </Tasks>
-    </Container>
-
-        
+    </Container>  
   )
-
 }
 
 export default Tarefas;

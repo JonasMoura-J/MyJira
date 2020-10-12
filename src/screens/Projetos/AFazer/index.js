@@ -24,9 +24,10 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import ProgressCircle from 'react-native-progress-circle';
 
 // import { UsuarioContext } from '../../contexts/user';
+import { UsuarioContext } from '../../../../contexts/user';
 
 const AFazer = () => {
-  const focoPagina = useIsFocused();
+  const {user} = useContext(UsuarioContext);
 
   const [percentual, setPercentual] = useState(0);
 
@@ -150,32 +151,34 @@ const AFazer = () => {
       <Tasks showsVerticalScrollIndicator={false}>
 
 
-        {tasks.map(task => (
-          <TaskContainer key={task.id}>
+        {user.projetos.map(({...p}) => (p.afazer.map(a =>
+          
+          <TaskText>{a.descricao}</TaskText>
+          // <TaskContainer>
            
-              <TaskText>{task.descricao}</TaskText>
+          //     <TaskText>{p.afazer}</TaskText>
               
-            <TaskActions>
-            <BoxIcon>
-              <Icon
-                name="trash-alt"
-                color="#ca0000"
-                size={30}
-                onPress={() => { handleRemoveTask(task) }}
-              />
-            </BoxIcon>
-            <BoxIcon>
-              <Icon
-                name={task.concluido ? "check" : "clock"}
-                color={task.concluido ? "#a4d43a" : "#000"}
-                size={30}
-                onPress={() => { handleTasks(task)}}
-              /> 
-            </BoxIcon>
-             </TaskActions>
+          //   <TaskActions>
+          //   {/* <BoxIcon>
+          //     <Icon
+          //       name="trash-alt"
+          //       color="#ca0000"
+          //       size={30}
+          //       onPress={() => { handleRemoveTask(task) }}
+          //     />
+          //   </BoxIcon>
+          //   <BoxIcon>
+          //     <Icon
+          //       name={task.concluido ? "check" : "clock"}
+          //       color={task.concluido ? "#a4d43a" : "#000"}
+          //       size={30}
+          //       onPress={() => { handleTasks(task)}}
+          //     /> 
+          //   </BoxIcon> */}
+          //    </TaskActions>
             
-           </TaskContainer>
-
+          //  </TaskContainer>
+        )
         )
         )}
       </Tasks>

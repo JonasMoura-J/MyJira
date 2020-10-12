@@ -13,8 +13,6 @@ import {
   Tasks,
   TaskText,
   BoxIcon,
-  ProgressContainer,
-  ButtonHidden,
   ButtonProjects
 } from './styles'
 import { useNavigation } from '@react-navigation/native';
@@ -134,19 +132,6 @@ const Projetos = () => {
   
       </FormEnviar>
 
-      <ProgressContainer>
-        <ProgressCircle
-          percent={percentual}
-          radius={70}
-          borderWidth={7}
-          color="#3aa4d4"
-          shadowColor="#999"
-          bgColor="#1c1c1c"
-        >
-        <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{`${percentual.toFixed(0)}%`}</Text>
-      </ProgressCircle>
-    </ProgressContainer>
-
       <Tasks showsVerticalScrollIndicator={false}>
 
         {user.projetos.map(p => (
@@ -181,10 +166,7 @@ const Projetos = () => {
         )}
       </Tasks>
     </Container>
-
-        
   )
-
 }
 
 export default Projetos;
