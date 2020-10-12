@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useReducer } from 'react';
 import { Text, View } from 'react-native';
 
 import {
@@ -16,19 +16,16 @@ import {
   BoxIcon,
   ProgressContainer
 } from './styles'
-
-
-
 import api from '../../../services/api';
-import { useIsFocused } from '@react-navigation/native';
+import { UsuarioContext } from '../../../contexts/user';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import ProgressCircle from 'react-native-progress-circle';
 
-const Tarefas = () => {
+const Tarefas = () =>{
 
-  const focoPagina = useIsFocused();
+  const {user} = useContext(UsuarioContext);
 
   const [percentual, setPercentual] = useState(0);
 
@@ -63,14 +60,13 @@ const Tarefas = () => {
   const handleAddTasks = async () => {
 
     if (newTask == "") {
-      // if (newTask.isEmpty()) {
-      // if (!(!!newTask)) {
       console.warn("você deve preencher a tarefa")
       return
     }
     const params = {
       descricao: newTask,
-      concluido: false
+      concluido: false,
+      usuarioId: user.id
     }
 
     try {

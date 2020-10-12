@@ -17,6 +17,8 @@ import agenda from '../../assets/agenda.png';
 import EmailIcon from '../../assets/email.svg';
 import LockIcon from '../../assets/lock.svg';
 import PersonIcon from '../../assets/person.svg';
+import { Alert } from 'react-native';
+import api from '../../../services/api';
 
 export default () => {
     const navigation = useNavigation();
@@ -31,6 +33,27 @@ export default () => {
         });
     }
 
+    const handleAddAccount = async () => {
+        
+        if (nome == "" || email =="" || senha == "") {
+          console.warn("você deve preencher todos os campos")
+          return
+        }
+        const params = {
+          email: email,
+          password: senha
+        }
+        try {
+          await api.post("usuarios", params);
+          setNome('')
+          setEmail('')
+          setSenha('')
+          Alert.Alert("Usuario cadastrado com sucesso!")
+        } catch (err) {
+          console.warn("erro ao salvar usuario")
+        }
+    
+      }
     return (
         <Container>
             <Imagem source={agenda} style ={{height: 100, width: 100}}/>
@@ -58,7 +81,7 @@ export default () => {
                 />
 
                 <CustomButton>
-                    <CustomButtonText>CADASTRAR</CustomButtonText>
+                    <CustomButtonText onPress = {handleAddAccount}>CADASTRAR</CustomButtonText>
                 </CustomButton>
             </InputArea>
 

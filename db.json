@@ -1,131 +1,47 @@
 {
   "usuarios": [
     {
+      "name": "Jonas",
       "id": 1,
-      "nome": "jonas",
       "email": "jonas@gmail.com",
-      "password": "123",
-      "tarefas": [
-        {
-          "descricao": "Projeto Final",
-          "id": 1,
-          "concluido": true
-        },
-        {
-          "descricao": "alou",
-          "id": 3,
-          "concluido": true
-        },
-        {
-          "descricao": "Vjdj",
-          "id": 4,
-          "concluido": true
-        },
-        {
-          "descricao": "Isso é um teste ",
-          "id": 5,
-          "concluido": true
-        },
-        {
-          "descricao": "sdvsdvdv",
-          "id": 6,
-          "concluido": true
-        },
-        {
-          "descricao": "sdvsdvsd",
-          "id": 7,
-          "concluido": true
-        },
-        {
-          "descricao": "dsvsdv",
-          "concluido": false,
-          "id": 8
-        },
-        {
-          "descricao": "G",
-          "concluido": false,
-          "id": 9
-        },
-        {
-          "descricao": "tarefa",
-          "concluido": false,
-          "id": 10
-        },
-        {
-          "descricao": "alou",
-          "concluido": false,
-          "id": 11
-        },
-        {
-          "descricao": "a",
-          "concluido": false,
-          "id": 12
-        },
-        {
-          "descricao": "a",
-          "concluido": false,
-          "id": 13
-        }
-      ],
-      "projetos": [
-        {
-          "descricao": "Projeto Final",
-          "id": 1,
-          "concluido": false,
-          "afazer": [
-            {
-              "descricao": "testando",
-              "id": 1
-            },
-            {
-              "descricao": "alou",
-              "id": 2
-            }
-          ] 
-        },
-        {
-          "descricao": "O Raphael é mau",
-          "id": 2,
-          "concluido": false,
-          "afazer": [
-            {
-              "descricao": "outra coisa",
-              "id": 1
-            }
-          ]
-        }
-      ]
+      "password": "123123"
     },
     {
+      "name": "Marcela",
+      "email": "marcela@gmail.com",
+      "password": "123",
+      "id": 2
+    }
+  ],
+  "projetos": [
+    {
+      "descricao": "Projeto Final",
+      "id": 1,
+      "usuarioId": 1,
+      "concluido": false
+    }
+  ],
+  "tarefas": [
+    {
+      "descricao": "Aprender react",
+      "concluido": true,
+      "projetoId": 1,
+      "usuarioId": 1,
+      "id": 1
+    },
+    {
+      "descricao": "Aprender react native",
+      "projetoId": 1,
+      "usuarioId": 1,
       "id": 2,
-      "nome": "Cláudio Leal (backupme)",
-      "email": "claudio@claudio.com",
-      "password": "111111",
-      "tarefas":[],
-      "projetos": [
-        {
-          "descricao": "Projeto Inicial",
-          "id": 1,
-          "concluido": false,
-          "afazer": [
-            {
-              "descricao": "Outra lista",
-              "id": 1
-            }
-          ]
-        },
-        {
-          "descricao": "O Raphael é bom mau",
-          "id": 2,
-          "concluido": true,
-          "afazer": [
-            {
-              "descricao": "fazer projetoalujioh",
-              "id": 1
-            }
-          ]
-        }
-      ]
+      "concluido": true
+    },
+    {
+      "descricao": "Aprender css",
+      "projetoId": 1,
+      "usuarioId": 1,
+      "id": 3,
+      "concluido": true
     }
   ]
 }

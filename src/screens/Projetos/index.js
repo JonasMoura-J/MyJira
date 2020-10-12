@@ -28,19 +28,15 @@ import { UsuarioContext } from '../../../contexts/user';
 const Projetos = () => {
 
     const {user} = useContext(UsuarioContext);
-    const projetos = user.projetos
-
-    const [percentual, setPercentual] = useState(0);
 
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
 
     const loadTasks = async () => {
       try {
-        const response = await api.get("usuarios");
-
+        const response = await api.get("projetos");
         setTasks(response.data)
-        
+
       } catch (err) {
         console.warn("Falha ao recuperar os projetos.")
       }
@@ -56,11 +52,13 @@ const Projetos = () => {
     }
     const params = {
       descricao: newTask,
+      usuarioId: user.id,
       concluido: false
     }
 
     try {
-      await api.post("usuario", params);
+      console.warn(params)
+      await api.post("projetos", params);
       setNewTask("");
       loadTasks();
     } catch (err) {
@@ -134,7 +132,7 @@ const Projetos = () => {
 
       <Tasks showsVerticalScrollIndicator={false}>
 
-        {user.projetos.map(p => (
+        {tasks.map(p => (
         <ButtonProjects onPress={handleProject}>
           <TaskContainer key={p.id} finalizado={p.concluido}>
            
