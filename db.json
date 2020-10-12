@@ -96,8 +96,32 @@
       "id": 2,
       "nome": "Cláudio Leal (backupme)",
       "email": "claudio@claudio.com",
-      "password": "111111"
+      "password": "111111",
+      "tarefas":[],
+      "projetos": [
+        {
+          "descricao": "Projeto Inicial",
+          "id": 1,
+          "concluido": false,
+          "afazer": [
+            {
+              "descricao": "Outra lista",
+              "id": 1
+            }
+          ] 
+        },
+        {
+          "descricao": "O Raphael é bom mau",
+          "id": 2,
+          "concluido": true,
+          "afazer": [
+            {
+              "descricao": "fazer projeto",
+              "id": 1
+            }
+          ]
+        }
+      ]
     }
   ]
-
 }

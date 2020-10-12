@@ -25,46 +25,28 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import ProgressCircle from 'react-native-progress-circle';
 
-// import { UsuarioContext } from '../../contexts/user';
+import { UsuarioContext } from '../../../contexts/user';
 
 const Projetos = () => {
 
-
-//   const usuario = useContext(UsuarioContext);
-    const focoPagina = useIsFocused();
+    const {user} = useContext(UsuarioContext);
 
     const [percentual, setPercentual] = useState(0);
 
-    const percentualProjetosRealizados = async () => {
-      const resultado = await api.get("projetos");
+    const [tasks, setTasks] = useState([]);
+    const [newTask, setNewTask] = useState("");
 
-      const projetos = resultado.data
-      
-      const projetos_realizados = projetos.filter(projeto => projeto.concluido)
-      
-      const calculo_percentual = (projetos_realizados.length / projetos.length) * 100
-      
-      setPercentual(calculo_percentual)
+    const loadTasks = async () => {
+
+      try {
+        const response = await api.get("usuarios/projetos");
+
+        setTasks(response.data)
+        
+      } catch (err) {
+        console.warn("Falha ao recuperar os projetos.")
+      }
     }
-    
-    useEffect(() => {
-      percentualProjetosRealizados()
-    },[])
-
-  const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState("");
-
-  const loadTasks = async () => {
-
-    try {
-      const response = await api.get("projetos");
-
-      setTasks(response.data)
-      
-    } catch (err) {
-      console.warn("Falha ao recuperar os projetos.")
-    }
-  }
 
   const handleAddTasks = async () => {
     
@@ -80,7 +62,7 @@ const Projetos = () => {
     }
 
     try {
-      await api.post("projetos", params);
+      await api.post(`${user.projetos}`, params);
       setNewTask("");
       loadTasks();
     } catch (err) {
@@ -148,8 +130,7 @@ const Projetos = () => {
         <Button onPress={handleAddTasks}>
           <TextButton>Criar</TextButton>
         </Button>
-        <ButtonHidden onPress ={percentualProjetosRealizados()}/>
-    
+  
       </FormEnviar>
 
       <ProgressContainer>
@@ -167,11 +148,11 @@ const Projetos = () => {
 
       <Tasks showsVerticalScrollIndicator={false}>
 
-        {tasks.map(task => (
+        {user.projetos.map(p => (
         <ButtonProjects onPress={handleProject}>
-          <TaskContainer key={task.id} finalizado={task.concluido}>
+          <TaskContainer key={p.id} finalizado={p.concluido}>
            
-              <TaskText>{task.descricao}</TaskText>
+              <TaskText>{p.descricao}</TaskText>
               
             <TaskActions>
             <BoxIcon>
@@ -179,16 +160,16 @@ const Projetos = () => {
                 name="trash-alt"
                 color="#ca0000"
                 size={30}
-                onPress={() => {handleRemoveTask(task)}}
+                onPress={() => {handleRemoveTask(p)}}
               />
 
             </BoxIcon>
             <BoxIcon>
               <Icon
-                name={task.concluido ? "check" : "clock"}
-                color={task.concluido ? "#a4d43a" : "#000"}
+                name={p.concluido ? "check" : "clock"}
+                color={p.concluido ? "#a4d43a" : "#000"}
                 size={30}
-                onPress={() => { handleTasks(task)}}
+                onPress={() => { handleTasks(p)}}
               />
             </BoxIcon>
              </TaskActions>

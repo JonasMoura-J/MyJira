@@ -34,10 +34,9 @@ export default () => {
         });
     }
 
-    // useEffect(() =>{ 
-    //     signOut()
-    //     console.warn(user)
-    // },[])
+    useEffect(() =>{ 
+        signOut()
+    },[])
 
     const handleSubmit = async () => {
 

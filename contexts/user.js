@@ -28,7 +28,7 @@ const UsuarioProvider = ({ children }) => {
 
   const signIn = async (email, password) => {
     const response = await api.get('usuarios');
-
+    
 
     const user = response.data.find((usuario) => {
       return email === usuario.email && password === usuario.password
