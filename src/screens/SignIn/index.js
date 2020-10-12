@@ -34,9 +34,9 @@ export default () => {
         });
     }
 
-    useEffect(() =>{ 
-        signOut()
-    },[])
+    // useEffect(() =>{ 
+    //     signOut()
+    // },[])
 
     const handleSubmit = async () => {
 

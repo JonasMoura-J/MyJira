@@ -16,20 +16,6 @@ const Deslogando = () =>{
         signOut()
     },[])
 
-    useEffect(() => {
-        const navigation = useNavigation();
-
-        const deslog = async () => {
-                setTimeout(function() {
-                    // navigation.reset({
-                    // routes:[{name: 'SignIn'}]
-                    // });
-                    console.warn('qualquer')
-                },3000)
-        }
-        deslog();
-    }, [])
-
     return(
         <Container>
             <TextDeslogando>Deslogando...</TextDeslogando>

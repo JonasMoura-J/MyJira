@@ -30,6 +30,7 @@ import { UsuarioContext } from '../../../contexts/user';
 const Projetos = () => {
 
     const {user} = useContext(UsuarioContext);
+    const projetos = user.projetos
 
     const [percentual, setPercentual] = useState(0);
 
@@ -37,9 +38,8 @@ const Projetos = () => {
     const [newTask, setNewTask] = useState("");
 
     const loadTasks = async () => {
-
       try {
-        const response = await api.get("usuarios/projetos");
+        const response = await api.get("usuarios");
 
         setTasks(response.data)
         
@@ -62,7 +62,7 @@ const Projetos = () => {
     }
 
     try {
-      await api.post(`${user.projetos}`, params);
+      await api.post("usuario", params);
       setNewTask("");
       loadTasks();
     } catch (err) {

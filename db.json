@@ -82,7 +82,7 @@
         {
           "descricao": "O Raphael é mau",
           "id": 2,
-          "concluido": true,
+          "concluido": false,
           "afazer": [
             {
               "descricao": "fazer projeto",

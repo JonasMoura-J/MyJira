@@ -10,6 +10,7 @@ export const Container = styled.SafeAreaView`
 
 export const TextDeslogando = styled.Text`
   font-size:20px;
+  color:#FFF;
 `;
 
 export const LoadingIcon = styled.ActivityIndicator`
