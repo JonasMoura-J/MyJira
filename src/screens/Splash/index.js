@@ -15,7 +15,7 @@ export default () => {
                 //AsyncStorage
             } else {
                 setTimeout(function() {
-                    navigation.navigate('Splash')
+                    navigation.navigate('SignIn')
                 },3000)
             }
         }
@@ -26,7 +26,7 @@ export default () => {
     return (
         <Container>
             <Imagem source={logo2}/>
-            <CustomText>ToDo</CustomText>
+            <CustomText>My Jira</CustomText>
             <LoadingIcon size="large" color="#a4d43a"/>
         </Container>
     );
