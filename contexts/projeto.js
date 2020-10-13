@@ -8,14 +8,13 @@ const ProjetoContext = createContext({});
 
 const ProjetoProvider = ({ children }) => {
 
-  const [projeto, setProjeto] = useState(null);
+  const [projeto, setProjeto] = useState("");
 
 
   useEffect(() => {
 
     const loadData = async () => {
-      const projeto = await AsyncStorage.getItem("projetos")
-
+      const projeto = await AsyncStorage.getItem("projeto")
       if (projeto) {
         setProjeto(JSON.parse(projeto))
       }
@@ -26,13 +25,12 @@ const ProjetoProvider = ({ children }) => {
 
   const EntrarProjeto = async (id) => {
       setProjeto(id)
-      console.warn("oi", id)
-    await AsyncStorage.setItem("projeto", JSON.stringify(id));    
+    await AsyncStorage.setItem("projeto", JSON.stringify(id));
   }
 
   const SairProjeto = async () => {
     await AsyncStorage.removeItem("projeto");
-    setProjeto(null)
+    setProjeto("")
   }
 
 

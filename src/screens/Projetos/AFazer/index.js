@@ -128,7 +128,7 @@ const AFazer = () => {
 
   return (
     <Container>
-      {console.warn(oi)}
+      {console.warn("hihi",projeto)}
       <FormEnviar>
         <Input
           placeholder="Incluir projeto..."
