@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import SignInput from '../../components/SignInput';
 import { 
@@ -21,7 +21,7 @@ import { UsuarioContext } from '../../../contexts/user';
 
 export default () => {
 
-    const { signIn, signOut, user } = useContext(UsuarioContext);
+    const { signIn } = useContext(UsuarioContext);
 
     const navigation = useNavigation();
 
@@ -33,9 +33,6 @@ export default () => {
             routes:[{name: 'SignUp'}]
         });
     }
-    // useEffect(() =>{ 
-    //     signOut()
-    // },[])
 
     const handleSubmit = async () => {
 
@@ -43,9 +40,6 @@ export default () => {
           await signIn(email, password)
         } catch (err) {
           console.warn('ola erro ao realizar a requisição')
-        // Auth
-        // console.warn(email, password)
-        // setCarregando(false)
       }
     }
     return (

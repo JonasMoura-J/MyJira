@@ -8,7 +8,7 @@ export const Container = styled.SafeAreaView`
 `;
 
 
-export const TaskContainer = styled.View`
+export const ProjectContainer = styled.View`
   flex-direction:row;
   justify-content:space-between;
   background-color: #e3e3e3;
@@ -18,19 +18,19 @@ export const TaskContainer = styled.View`
   flex:1;
 `;
 
-export const Tasks = styled.ScrollView`
+export const Projects = styled.ScrollView`
 `;
 
-export const Task = styled.View`
+export const Project = styled.View`
   flex:1;
 `;
 
-export const TaskText = styled.Text`
+export const ProjectText = styled.Text`
   font-size:20px;
   width: 70%;
 `;
 
-export const TaskActions = styled.View`
+export const ProjectActions = styled.View`
   flex-direction:row;
   
 `;
@@ -58,10 +58,6 @@ export const Button = styled.TouchableOpacity`
     border-radius: 30px;
     justify-content: center;
     align-items: center;
-`;
-export const ButtonHidden = styled.TouchableOpacity`
-    height: 0px;
-    width: 0px;
 `;
 
 export const TextButton = styled.Text`

@@ -36,9 +36,18 @@ export default () => {
     const handleAddAccount = async () => {
         
         if (nome == "" || email =="" || senha == "") {
-          console.warn("você deve preencher todos os campos")
+          console.warn("Você deve preencher todos os campos")
           return
         }
+
+        const listaUsuarios = await api.get("usuarios");
+        const emailExistente = listaUsuarios.data.find(u => u.email == email)
+        
+        if (emailExistente) {
+          Alert.alert("", "E-mail já cadastrado", [{text:"ok"}])
+          return  
+        }
+
         const params = {
             name: nome,
             email: email,
@@ -51,7 +60,7 @@ export default () => {
           setSenha('')
           Alert.Alert("Usuario cadastrado com sucesso!")
         } catch (err) {
-          console.warn("erro ao salvar usuario")
+          console.warn("Erro ao salvar usuario")
         }
     
       }

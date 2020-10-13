@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 
 import {
   Container,
@@ -17,18 +17,14 @@ import {
 } from './styles'
 
 import api from '../../../../services/api';
-import { useIsFocused } from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import ProgressCircle from 'react-native-progress-circle';
 
-// import { UsuarioContext } from '../../contexts/user';
-// import { UsuarioContext } from '../../../../contexts/user';
 import { ProjetoIdContext } from '../../../../contexts/projeto';
 
 const AFazer = () => {
-  // const {user} = useContext(UsuarioContext);
 
   const {idDoProjeto} = useContext(ProjetoIdContext);
 
@@ -62,8 +58,7 @@ const AFazer = () => {
   const handleAddTasks = async () => {
 
     if (newTask == "") {
-      // if (newTask.isEmpty()) {
-      // if (!(!!newTask)) {
+
       console.warn("Você deve preencher o afazer")
       return
     }
@@ -109,10 +104,9 @@ const AFazer = () => {
     } catch (err) {
       console.warn("Erro ao deletar o afazer")
     }
-    // console.warn(`delete ${id}`)
+
   }
 
-  //Apenas será executado uma única vez!
   useEffect(() => {
     loadTasks();
     percentualAFazerRealizados();

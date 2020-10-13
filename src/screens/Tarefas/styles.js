@@ -69,13 +69,3 @@ export const BoxIcon = styled.TouchableOpacity`
 export const ProgressContainer = styled.View`
   margin: 30px 0 2px 0;
 `;
-
-export const Buttonsair = styled.TouchableOpacity`
-    height: 60px;
-    width: 80px;
-    margin: 0 5px;
-    background-color: #a4d43a;
-    border-radius: 30px;
-    justify-content: center;
-    align-items: center;
-`;

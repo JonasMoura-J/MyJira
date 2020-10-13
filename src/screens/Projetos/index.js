@@ -2,15 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import {
   Container,
-  Task,
-  TaskContainer,
-  TaskActions,
+  ProjectContainer,
+  ProjectActions,
   Input,
   Button,
   TextButton,
   FormEnviar,
-  Tasks,
-  TaskText,
+  Projects,
+  ProjectText,
   BoxIcon,
   ButtonProjects
 } from './styles'
@@ -22,37 +21,33 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { UsuarioContext } from '../../../contexts/user';
 import { ProjetoIdContext } from '../../../contexts/projeto';
 
-
-
 const Projetos = () => {
 
     const {user} = useContext(UsuarioContext);
 
     const {SelecionarProjeto} = useContext(ProjetoIdContext);
 
-    const [tasks, setTasks] = useState([]);
-    const [newTask, setNewTask] = useState("");
+    const [projects, setProjects] = useState([]);
+    const [newProject, setNewProject] = useState("");
 
-    const loadTasks = async () => {
+    const loadProject = async () => {
       try {
         const response = await api.get("projetos");
-        setTasks(response.data)
+        setProjects(response.data)
 
       } catch (err) {
         console.warn("Falha ao recuperar os projetos.")
       }
     }
 
-  const handleAddTasks = async () => {
+  const handleAddProject = async () => {
     
-    if (newTask == "") {
-      // if (newTask.isEmpty()) {
-      // if (!(!!newTask)) {
+    if (newProject == "") {
       console.warn("Você deve preencher um projeto")
       return
     }
     const params = {
-      descricao: newTask,
+      descricao: newProject,
       usuarioId: user.id,
       concluido: false
     }
@@ -60,58 +55,56 @@ const Projetos = () => {
     try {
       console.warn(params)
       await api.post("projetos", params);
-      setNewTask("");
-      loadTasks();
+      setNewProject("");
+      loadProject();
     } catch (err) {
       console.warn("Erro ao salvar o projeto")
     }
 
   }
 
-  const handleTasks = async (task) => {
+  const handleProject = async (project) => {
     
     const params = {
-      ...task,
-      concluido: !task.concluido
+      ...project,
+      concluido: !project.concluido
     }
   
 
     try {
       
-      await api.put(`projetos/${task.id}`, params);
-      loadTasks();
+      await api.put(`projetos/${project.id}`, params);
+      loadProject();
     } catch (err) {
 
     }
   }
 
-  const handleRemoveTask = async ({ id }) => {
+  const handleRemoveProject = async ({ id }) => {
     
     try {
       await api.delete(`projetos/${id}`);
-      loadTasks();
+      loadProject();
     } catch (err) {
       console.warn("Erro ao deletar o projeto")
     }
-    // console.warn(`delete ${id}`)
+
   }
 
-  //Apenas será executado uma única vez!
   useEffect(() => {
-    loadTasks();
+    loadProject();
   }, [])
 
-  //Navegação para as tarefas de projetos
   const navigation = useNavigation();
 
-  const handleProject = (id) => {
+  const handleIdProject = (id) => {
     SelecionarProjeto(id)
     navigation.reset({
       routes:[{name: 'AFazer'}]
   });
   }
 
-  const projetos = tasks.filter(p => p.usuarioId == user.id)
+  const projetos = projects.filter(p => p.usuarioId == user.id)
   
   return (
   
@@ -120,29 +113,29 @@ const Projetos = () => {
       <FormEnviar>
         <Input
           placeholder="Incluir projeto..."
-          onChangeText={(letras) => { setNewTask(letras) }}
-          value={newTask}
+          onChangeText={(letras) => { setNewProject(letras) }}
+          value={newProject}
         />
-        <Button onPress={handleAddTasks}>
+        <Button onPress={handleAddProject}>
           <TextButton>Criar</TextButton>
         </Button>
       </FormEnviar>
 
-      <Tasks showsVerticalScrollIndicator={false}>
+      <Projects showsVerticalScrollIndicator={false}>
 
         {projetos.map(p => (
-        <ButtonProjects key={p.id} onPress={()=> handleProject(p.id)}>
-          <TaskContainer finalizado={p.concluido}>
+        <ButtonProjects key={p.id} onPress={()=> handleIdProject(p.id)}>
+          <ProjectContainer finalizado={p.concluido}>
            
-              <TaskText>{p.descricao}</TaskText>
+              <ProjectText>{p.descricao}</ProjectText>
               
-            <TaskActions>
+            <ProjectActions>
             <BoxIcon>
               <Icon
                 name="trash-alt"
                 color="#ca0000"
                 size={30}
-                onPress={() => {handleRemoveTask(p)}}
+                onPress={() => {handleRemoveProject(p)}}
               />
 
             </BoxIcon>
@@ -151,16 +144,16 @@ const Projetos = () => {
                 name={p.concluido ? "check" : "clock"}
                 color={p.concluido ? "#a4d43a" : "#000"}
                 size={30}
-                onPress={() => { handleTasks(p)}}
+                onPress={() => { handleProject(p)}}
               />
             </BoxIcon>
-             </TaskActions>
+             </ProjectActions>
             
-           </TaskContainer>
+           </ProjectContainer>
          </ButtonProjects>
         )
         )}
-      </Tasks>
+      </Projects>
     </Container> 
   )
 }

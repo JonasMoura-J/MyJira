@@ -15,7 +15,7 @@ const UsuarioProvider = ({ children }) => {
   useEffect(() => {
 
     const loadData = async () => {
-      const user = await AsyncStorage.getItem("@TODO:user")
+      const user = await AsyncStorage.getItem("@JIRA:user")
 
       if (user) {
         setUser(JSON.parse(user))
@@ -37,8 +37,7 @@ const UsuarioProvider = ({ children }) => {
 
     if (user !== undefined) {
       setUser(user)
-      await AsyncStorage.setItem("@TODO:user", JSON.stringify(user));
-      //tenho que persistir em um storage / banco de dados embarcado
+      await AsyncStorage.setItem("@JIRA:user", JSON.stringify(user));
 
     } else {
       console.warn("Senha ou Usuário inválidos.")
@@ -47,7 +46,7 @@ const UsuarioProvider = ({ children }) => {
   }
 
   const signOut = async () => {
-    await AsyncStorage.removeItem("@TODO:user");
+    await AsyncStorage.removeItem("@JIRA:user");
     setUser(null)
   }
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useContext} from 'react'
 import { UsuarioContext } from '../../../contexts/user';
-import { useNavigation } from '@react-navigation/native';
+
 import {
     Container,
     TextDeslogando,

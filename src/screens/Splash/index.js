@@ -11,8 +11,6 @@ export default () => {
         const checkToken = async () => {
             const token = null;
             if (token) {
-                //validar token
-                //AsyncStorage
             } else {
                 setTimeout(function() {
                     navigation.navigate('SignIn')

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext, useReducer } from 'react';
-import { Text, View } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { Text } from 'react-native';
 
 import {
   Container,
@@ -8,7 +8,6 @@ import {
   TaskActions,
   Input,
   Button,
-  Buttonsair,
   TextButton,
   FormEnviar,
   Tasks,
@@ -30,16 +29,14 @@ const Tarefas = () =>{
   const [percentual, setPercentual] = useState(0);
 
   const percentualTarefasRealizadas = async () => {
-    const resultado = await api.get("tarefas");
-    const listaTarefas = resultado.data
+    const resultado = await api.get(`usuarios/${user.id}?_embed=tarefas`);
+    const listaTarefas = resultado.data.tarefas
     const tarefas_realizadas = listaTarefas.filter(tarefa => tarefa.concluido)
 
     const calculo_percentual = (tarefas_realizadas.length / listaTarefas.length) * 100
 
     setPercentual(calculo_percentual)
   }
-
-//   const usuario = useContext(UsuarioContext);
 
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
@@ -104,21 +101,13 @@ const Tarefas = () =>{
     } catch (err) {
       console.warn("Erro ao deletar tarefa")
     }
-    // console.warn(`delete ${id}`)
+   
   }
 
-  //Apenas será executado uma única vez!
   useEffect(() => {
     loadTasks();
     percentualTarefasRealizadas();
   }, [])
-
-  //Aerá executado toda vez que NewTask sofrer alterações
-  //apenas um exemplo, sem relação com a solução atual
-  // useEffect(() => {
-    // console.warn(newTask)
-  // }, [newTask])
-
 
   const tarefas = tasks.filter(t => t.usuarioId == user.id)
 
