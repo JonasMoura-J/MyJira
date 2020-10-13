@@ -47,23 +47,29 @@
   "afazeres": [
     {
       "descricao": "Mentira",
-      "concluido": true,
       "projetoId": 1,
       "usuarioId": 1,
-      "id": 1
+      "id": 1,
+      "concluido": false
     },
     {
       "descricao": "Aprender react native",
       "projetoId": 1,
       "usuarioId": 1,
       "id": 2,
-      "concluido": true
+      "concluido": false
     },
     {
       "descricao": "Aprender css",
       "projetoId": 1,
       "usuarioId": 1,
       "id": 3,
+      "concluido": false
+    },
+    {
+      "descricao": "Hshs",
+      "projetoId": 2,
+      "id": 4,
       "concluido": true
     }
   ],

@@ -39,7 +39,7 @@ const AFazer = () => {
 
   const percentualAFazerRealizados = async () => {
     const resultado = await api.get("afazeres");
-    const AFazer = resultado.data.afazer
+    const AFazer = resultado.data
     const AFazer_realizadas = AFazer.filter(tarefa => tarefa.concluido)
 
     const calculo_percentual = (AFazer_realizadas.length / AFazer.length) * 100
@@ -75,7 +75,7 @@ const AFazer = () => {
     }
 
     try {
-      await api.post("afazer", params);
+      await api.post("afazeres", params);
       setNewTask("");
       loadTasks();
       percentualAFazerRealizados();
@@ -93,7 +93,7 @@ const AFazer = () => {
     }
 
     try {
-      await api.put(`afazer/${task.id}`, params);
+      await api.put(`afazeres/${task.id}`, params);
       loadTasks();
       percentualAFazerRealizados();
     } catch (err) {
@@ -104,7 +104,7 @@ const AFazer = () => {
   const handleRemoveTask = async ({ id }) => {
 
     try {
-      await api.delete(`afazer/${id}`);
+      await api.delete(`afazeres/${id}`);
       loadTasks();
       percentualAFazerRealizados();
     } catch (err) {
