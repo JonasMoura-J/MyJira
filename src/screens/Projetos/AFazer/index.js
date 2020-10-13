@@ -26,8 +26,10 @@ import ProgressCircle from 'react-native-progress-circle';
 // import { UsuarioContext } from '../../contexts/user';
 import { UsuarioContext } from '../../../../contexts/user';
 
-const AFazer = (props) => {
+const AFazer = () => {
   const {user} = useContext(UsuarioContext);
+
+  const {projeto} = useContext(UsuarioContext);
 
   const [percentual, setPercentual] = useState(0);
 
@@ -47,10 +49,9 @@ const AFazer = (props) => {
   const loadTasks = async () => {
 
     try {
-      const response = await api.get("projetos"); 
+      const response = await api.get("afazeres"); 
       const AFazer = response.data
-      const {oi, ...oi2} = response.data
-      console.warn(oi)
+      console.warn(AFazer)
       setTasks(AFazer)
       
     } catch (err) {
@@ -69,8 +70,7 @@ const AFazer = (props) => {
     const params = {
       descricao: newTask,
       concluido: false,
-      usuarioId: user.id
-
+      projetoId: projeto
     }
 
     try {
@@ -124,10 +124,11 @@ const AFazer = (props) => {
     // console.warn(newTask)
   }, [newTask])
 
-  const oi = tasks.filter(p => p.usuarioId == user.id)
+  const oi = tasks.filter(a => a.projetoId == projeto)
 
   return (
     <Container>
+      {console.warn(oi)}
       <FormEnviar>
         <Input
           placeholder="Incluir projeto..."
@@ -157,31 +158,32 @@ const AFazer = (props) => {
 
         {oi.map(a =>
           
-        <TaskText>"oi"</TaskText>
-          // <TaskContainer>
+          <TaskContainer key={a.id} finalizado={a.concluido}>
            
-          //     <TaskText>{p.afazer}</TaskText>
-              
-          //   <TaskActions>
-          //   {/* <BoxIcon>
-          //     <Icon
-          //       name="trash-alt"
-          //       color="#ca0000"
-          //       size={30}
-          //       onPress={() => { handleRemoveTask(task) }}
-          //     />
-          //   </BoxIcon>
-          //   <BoxIcon>
-          //     <Icon
-          //       name={task.concluido ? "check" : "clock"}
-          //       color={task.concluido ? "#a4d43a" : "#000"}
-          //       size={30}
-          //       onPress={() => { handleTasks(task)}}
-          //     /> 
-          //   </BoxIcon> */}
-          //    </TaskActions>
-            
-          //  </TaskContainer>   
+          <TaskText>{a.descricao}</TaskText>
+          
+        <TaskActions>
+        <BoxIcon>
+          <Icon
+            name="trash-alt"
+            color="#ca0000"
+            size={30}
+            onPress={() => {handleRemoveTask(a)}}
+          />
+
+        </BoxIcon>
+        <BoxIcon>
+          <Icon
+            name={a.concluido ? "check" : "clock"}
+            color={a.concluido ? "#a4d43a" : "#000"}
+            size={30}
+            onPress={() => { handleTasks(a)}}
+          />
+        </BoxIcon>
+         </TaskActions>
+        
+       </TaskContainer>
+
         )}
       </Tasks>
     </Container>
