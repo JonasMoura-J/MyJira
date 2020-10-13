@@ -40,8 +40,9 @@ export default () => {
           return
         }
         const params = {
-          email: email,
-          password: senha
+            name: nome,
+            email: email,
+            password: senha
         }
         try {
           await api.post("usuarios", params);

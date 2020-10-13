@@ -68,7 +68,9 @@ const AFazer = () => {
     }
     const params = {
       descricao: newTask,
-      concluido: false
+      concluido: false,
+      usuarioId: user.id
+
     }
 
     try {
@@ -122,6 +124,8 @@ const AFazer = () => {
     // console.warn(newTask)
   }, [newTask])
 
+  const oi = tasks.filter(p => p.usuarioId == user.id)
+
   return (
     <Container>
       <FormEnviar>
@@ -151,7 +155,7 @@ const AFazer = () => {
       <Tasks showsVerticalScrollIndicator={false}>
 
 
-        {user.projetos.map(({...p}) => (p.afazer.map(a =>
+        {oi.map(a =>
           
           <TaskText>{a.descricao}</TaskText>
           // <TaskContainer>
@@ -177,9 +181,7 @@ const AFazer = () => {
           //   </BoxIcon> */}
           //    </TaskActions>
             
-          //  </TaskContainer>
-        )
-        )
+          //  </TaskContainer>   
         )}
       </Tasks>
     </Container>

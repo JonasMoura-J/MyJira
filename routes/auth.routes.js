@@ -9,7 +9,6 @@ import AFazer from '../src/screens/Projetos/AFazer';
 const Auth = createStackNavigator();
 
 const AuthRoutes = () => {
-console.warn('cheguei')
   return (
     <Auth.Navigator
       screenOptions={

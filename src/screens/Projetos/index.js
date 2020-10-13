@@ -115,6 +115,8 @@ const Projetos = () => {
   });
   }
 
+  const oi = tasks.filter(p => p.usuarioId == user.id)
+
   return (
     <Container>
       
@@ -127,12 +129,11 @@ const Projetos = () => {
         <Button onPress={handleAddTasks}>
           <TextButton>Criar</TextButton>
         </Button>
-  
       </FormEnviar>
 
       <Tasks showsVerticalScrollIndicator={false}>
 
-        {tasks.map(p => (
+        {oi.map(p => (
         <ButtonProjects onPress={handleProject}>
           <TaskContainer key={p.id} finalizado={p.concluido}>
            

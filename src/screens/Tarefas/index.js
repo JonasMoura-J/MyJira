@@ -76,7 +76,6 @@ const Tarefas = () =>{
     } catch (err) {
       console.warn("erro ao salvar a tarefa")
     }
-
   }
 
   const handleTasks = async (task) => {
@@ -116,8 +115,12 @@ const Tarefas = () =>{
     // console.warn(newTask)
   }, [newTask])
 
+
+  const oi = tasks.filter(p => p.usuarioId == user.id)
+
   return (
     <Container>
+      {console.warn(oi)}
       <FormEnviar>
         <Input
           placeholder="Incluir tarefas..."
@@ -144,35 +147,32 @@ const Tarefas = () =>{
       </ProgressContainer>
 
       <Tasks showsVerticalScrollIndicator={false}>
+      {oi.map(task => (
+            <TaskContainer key={task.id} finalizado={task.concluido}>
 
+            <TaskText>{task.descricao}</TaskText>
 
-        {tasks.map(task => (
-          <TaskContainer key={task.id} finalizado={task.concluido}>
-           
-              <TaskText>{task.descricao}</TaskText>
-              
-            <TaskActions>
-            <BoxIcon>
-              <Icon
-                name="trash-alt"
-                color="#ca0000"
-                size={30}
-                onPress={() => { handleRemoveTask(task) }}
-              />
-            </BoxIcon>
-            <BoxIcon>
-              <Icon
-                name={task.concluido ? "check" : "clock"}
-                color={task.concluido ? "#a4d43a" : "#000"}
-                size={30}
-                onPress={() => { handleTasks(task)}}
-              /> 
-            </BoxIcon>
-             </TaskActions>
-            
-           </TaskContainer>
-        )
-        )}
+          <TaskActions>
+          <BoxIcon>
+            <Icon
+              name="trash-alt"
+              color="#ca0000"
+              size={30}
+              onPress={() => { handleRemoveTask(task) }}
+            />
+          </BoxIcon>
+          <BoxIcon>
+            <Icon
+              name={task.concluido ? "check" : "clock"}
+              color={task.concluido ? "#a4d43a" : "#000"}
+              size={30}
+              onPress={() => { handleTasks(task)}}
+            /> 
+          </BoxIcon>
+           </TaskActions>
+
+         </TaskContainer>
+      ))}
       </Tasks>
     </Container>  
   )
