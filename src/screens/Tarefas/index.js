@@ -73,6 +73,7 @@ const Tarefas = () =>{
       await api.post("tarefas", params);
       setNewTask("");
       loadTasks();
+      percentualTarefasRealizadas();
     } catch (err) {
       console.warn("erro ao salvar a tarefa")
     }
@@ -88,6 +89,7 @@ const Tarefas = () =>{
     try {
       await api.put(`tarefas/${task.id}`, params);
       loadTasks();
+      percentualTarefasRealizadas();
     } catch (err) {
 
     }
@@ -98,29 +100,21 @@ const Tarefas = () =>{
     try {
       await api.delete(`tarefas/${id}`);
       loadTasks();
+      percentualTarefasRealizadas();
     } catch (err) {
       console.warn("erro ao deletar tarefa")
     }
-    // console.warn(`delete ${id}`)
-  }
 
-  //Apenas será executado uma única vez!
+  }
   useEffect(() => {
     loadTasks();
+    percentualTarefasRealizadas();
   }, [])
-
-  //Aerá executado toda vez que NewTask sofrer alterações
-  //apenas um exemplo, sem relação com a solução atual
-  useEffect(() => {
-    // console.warn(newTask)
-  }, [newTask])
-
 
   const oi = tasks.filter(p => p.usuarioId == user.id)
 
   return (
     <Container>
-      {console.warn(oi)}
       <FormEnviar>
         <Input
           placeholder="Incluir tarefas..."
@@ -135,14 +129,14 @@ const Tarefas = () =>{
 
         <ProgressContainer>
           <ProgressCircle
-            percent={30}
+            percent={percentual}
             radius={70}
             borderWidth={7}
             color="#3aa4d4"
             shadowColor="#999"
             bgColor="#1c1c1c"
           >
-          <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{30}</Text>
+          <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{`${percentual.toFixed(0)}%`}</Text>
           </ProgressCircle>
       </ProgressContainer>
 

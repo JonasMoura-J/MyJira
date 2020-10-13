@@ -81,7 +81,6 @@ const AFazer = () => {
     } catch (err) {
       console.warn("erro ao salvar a tarefa")
     }
-
   }
 
   const handleTasks = async (task) => {
@@ -124,8 +123,6 @@ const AFazer = () => {
     // console.warn(newTask)
   }, [newTask])
 
-  const oi = tasks.filter(p => p.usuarioId == user.id)
-
   return (
     <Container>
       <FormEnviar>
@@ -155,7 +152,7 @@ const AFazer = () => {
       <Tasks showsVerticalScrollIndicator={false}>
 
 
-        {oi.map(a =>
+        {tasks.map(a =>
           
           <TaskText>{a.descricao}</TaskText>
           // <TaskContainer>

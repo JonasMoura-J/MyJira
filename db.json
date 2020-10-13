@@ -60,15 +60,13 @@
       "id": 3,
       "concluido": true
     }
-
-
   ],
   "tarefas": [
     {
       "descricao": "Aprender react",
-      "concluido": true,
       "usuarioId": 1,
-      "id": 1
+      "id": 1,
+      "concluido": true
     }
   ]
 }

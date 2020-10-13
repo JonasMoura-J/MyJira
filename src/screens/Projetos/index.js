@@ -17,11 +17,8 @@ import {
 } from './styles'
 import { useNavigation } from '@react-navigation/native';
 import api from '../../../services/api';
-import { useIsFocused } from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
-import ProgressCircle from 'react-native-progress-circle';
 
 import { UsuarioContext } from '../../../contexts/user';
 
@@ -73,8 +70,6 @@ const Projetos = () => {
       ...task,
       concluido: !task.concluido
     }
-  
-
     try {
       
       await api.put(`projetos/${task.id}`, params);
@@ -94,7 +89,6 @@ const Projetos = () => {
     }
     // console.warn(`delete ${id}`)
   }
-
   //Apenas será executado uma única vez!
   useEffect(() => {
     loadTasks();
@@ -118,8 +112,7 @@ const Projetos = () => {
   const oi = tasks.filter(p => p.usuarioId == user.id)
 
   return (
-    <Container>
-      
+    <Container> 
       <FormEnviar>
         <Input
           placeholder="Incluir projeto..."
