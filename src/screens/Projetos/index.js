@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View } from 'react-native';
 
 import {
   Container,
@@ -17,27 +16,19 @@ import {
 } from './styles'
 import { useNavigation } from '@react-navigation/native';
 import api from '../../../services/api';
-import { useIsFocused } from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import ProgressCircle from 'react-native-progress-circle';
-
 import { UsuarioContext } from '../../../contexts/user';
-import AllTasks from '../../components/AllTasks';
-import AFazer from './AFazer';
-import { ProjetoContext } from '../../../contexts/projeto';
+import { ProjetoIdContext } from '../../../contexts/projeto';
 
 
 
 const Projetos = () => {
 
-    let troca = false
-    const [id, setId] = useState('');
-
     const {user} = useContext(UsuarioContext);
 
-    const {EntrarProjeto} = useContext(ProjetoContext);
+    const {SelecionarProjeto} = useContext(ProjetoIdContext);
 
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
@@ -57,7 +48,7 @@ const Projetos = () => {
     if (newTask == "") {
       // if (newTask.isEmpty()) {
       // if (!(!!newTask)) {
-      console.warn("você deve preencher um projeto")
+      console.warn("Você deve preencher um projeto")
       return
     }
     const params = {
@@ -72,7 +63,7 @@ const Projetos = () => {
       setNewTask("");
       loadTasks();
     } catch (err) {
-      console.warn("erro ao salvar o projeto")
+      console.warn("Erro ao salvar o projeto")
     }
 
   }
@@ -100,7 +91,7 @@ const Projetos = () => {
       await api.delete(`projetos/${id}`);
       loadTasks();
     } catch (err) {
-      console.warn("erro ao deletar projeto")
+      console.warn("Erro ao deletar o projeto")
     }
     // console.warn(`delete ${id}`)
   }
@@ -110,23 +101,17 @@ const Projetos = () => {
     loadTasks();
   }, [])
 
-  //Aerá executado toda vez que NewTask sofrer alterações
-  //apenas um exemplo, sem relação com a solução atual
-  useEffect(() => {
-    // console.warn(newTask)
-  }, [newTask])
-
   //Navegação para as tarefas de projetos
   const navigation = useNavigation();
 
   const handleProject = (id) => {
-    EntrarProjeto(id)
+    SelecionarProjeto(id)
     navigation.reset({
       routes:[{name: 'AFazer'}]
   });
   }
 
-  const oi = tasks.filter(p => p.usuarioId == user.id)
+  const projetos = tasks.filter(p => p.usuarioId == user.id)
   
   return (
   
@@ -145,9 +130,9 @@ const Projetos = () => {
 
       <Tasks showsVerticalScrollIndicator={false}>
 
-        {oi.map(p => (
-        <ButtonProjects onPress={()=> handleProject(p.id)}>
-          <TaskContainer key={p.id} finalizado={p.concluido}>
+        {projetos.map(p => (
+        <ButtonProjects key={p.id} onPress={()=> handleProject(p.id)}>
+          <TaskContainer finalizado={p.concluido}>
            
               <TaskText>{p.descricao}</TaskText>
               

@@ -1,44 +1,43 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-import api from '../services/api';
-
 import AsyncStorage from '@react-native-community/async-storage';
 
-const ProjetoContext = createContext({});
+const ProjetoIdContext = createContext({});
 
-const ProjetoProvider = ({ children }) => {
+const ProjetoIdProvider = ({ children }) => {
 
-  const [projeto, setProjeto] = useState("");
+  const [idDoProjeto, setIdDoProjeto] = useState("");
 
 
   useEffect(() => {
 
     const loadData = async () => {
-      const projeto = await AsyncStorage.getItem("projeto")
-      if (projeto) {
-        setProjeto(JSON.parse(projeto))
+      const idProjeto = await AsyncStorage.getItem("@JIRA:idProjeto")
+      if (idProjeto) {
+        setIdDoProjeto(JSON.parse(idProjeto))
       }
     }
 
     loadData();
   }, []);
 
-  const EntrarProjeto = async (id) => {
-      setProjeto(id)
-    await AsyncStorage.setItem("projeto", JSON.stringify(id));
+  const SelecionarProjeto = async (id) => {
+      setIdDoProjeto(id)
+    await AsyncStorage.setItem("@JIRA:idProjeto", JSON.stringify(id));
   }
 
-  const SairProjeto = async () => {
-    await AsyncStorage.removeItem("projeto");
-    setProjeto("")
-  }
+  //##Testar para ver se está sendo usado
+  // const SairProjeto = async () => {
+  //   await AsyncStorage.removeItem("@JIRA:idProjeto");
+  //   setIdDoProjeto("")
+  // }
 
 
   return (
-    <ProjetoContext.Provider value={{ projeto, EntrarProjeto, SairProjeto }}>
+    <ProjetoIdContext.Provider value={{ idDoProjeto, SelecionarProjeto}}>
       {children}
-    </ProjetoContext.Provider>
+    </ProjetoIdContext.Provider>
   )
 }
 
-export { ProjetoContext, ProjetoProvider }
+export { ProjetoIdContext, ProjetoIdProvider }

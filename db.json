@@ -35,7 +35,7 @@
       "descricao": "Projeto Final",
       "id": 1,
       "usuarioId": 1,
-      "concluido": true
+      "concluido": false
     },
     {
       "descricao": "Proj",
@@ -57,14 +57,14 @@
       "projetoId": 1,
       "usuarioId": 1,
       "id": 2,
-      "concluido": false
+      "concluido": true
     },
     {
       "descricao": "Aprender css",
       "projetoId": 1,
       "usuarioId": 1,
       "id": 3,
-      "concluido": false
+      "concluido": true
     }
   ],
   "tarefas": [

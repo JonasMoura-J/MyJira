@@ -31,10 +31,10 @@ const Tarefas = () =>{
 
   const percentualTarefasRealizadas = async () => {
     const resultado = await api.get("tarefas");
-    const tarefas = resultado.data
-    const tarefas_realizadas = tarefas.filter(tarefa => tarefa.concluido)
+    const listaTarefas = resultado.data
+    const tarefas_realizadas = listaTarefas.filter(tarefa => tarefa.concluido)
 
-    const calculo_percentual = (tarefas_realizadas.length / tarefas.length) * 100
+    const calculo_percentual = (tarefas_realizadas.length / listaTarefas.length) * 100
 
     setPercentual(calculo_percentual)
   }
@@ -60,7 +60,7 @@ const Tarefas = () =>{
   const handleAddTasks = async () => {
 
     if (newTask == "") {
-      console.warn("você deve preencher a tarefa")
+      console.warn("Você deve preencher a tarefa")
       return
     }
     const params = {
@@ -75,7 +75,7 @@ const Tarefas = () =>{
       loadTasks();
       percentualTarefasRealizadas();
     } catch (err) {
-      console.warn("erro ao salvar a tarefa")
+      console.warn("Erro ao salvar a tarefa")
     }
   }
 
@@ -102,7 +102,7 @@ const Tarefas = () =>{
       loadTasks();
       percentualTarefasRealizadas();
     } catch (err) {
-      console.warn("erro ao deletar tarefa")
+      console.warn("Erro ao deletar tarefa")
     }
     // console.warn(`delete ${id}`)
   }
@@ -120,11 +120,10 @@ const Tarefas = () =>{
   // }, [newTask])
 
 
-  const oi = tasks.filter(p => p.usuarioId == user.id)
+  const tarefas = tasks.filter(t => t.usuarioId == user.id)
 
   return (
     <Container>
-      {console.warn(oi)}
       <FormEnviar>
         <Input
           placeholder="Incluir tarefas..."
@@ -151,7 +150,7 @@ const Tarefas = () =>{
       </ProgressContainer>
 
       <Tasks showsVerticalScrollIndicator={false}>
-      {oi.map(task => (
+      {tarefas.map(task => (
             <TaskContainer key={task.id} finalizado={task.concluido}>
 
             <TaskText>{task.descricao}</TaskText>

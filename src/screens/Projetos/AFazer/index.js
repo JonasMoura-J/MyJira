@@ -24,13 +24,13 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import ProgressCircle from 'react-native-progress-circle';
 
 // import { UsuarioContext } from '../../contexts/user';
-import { UsuarioContext } from '../../../../contexts/user';
-import { ProjetoContext } from '../../../../contexts/projeto';
+// import { UsuarioContext } from '../../../../contexts/user';
+import { ProjetoIdContext } from '../../../../contexts/projeto';
 
 const AFazer = () => {
-  const {user} = useContext(UsuarioContext);
+  // const {user} = useContext(UsuarioContext);
 
-  const {projeto} = useContext(ProjetoContext);
+  const {idDoProjeto} = useContext(ProjetoIdContext);
 
   const [percentual, setPercentual] = useState(0);
 
@@ -38,11 +38,11 @@ const AFazer = () => {
   const [newTask, setNewTask] = useState("");
 
   const percentualAFazerRealizados = async () => {
-    const response = await api.get(`projetos/${projeto}?_embed=afazeres`); 
-    const AFazer = response.data.afazeres
-    const AFazer_realizadas = AFazer.filter(tarefa => tarefa.concluido)
+    const response = await api.get(`projetos/${idDoProjeto}?_embed=afazeres`); 
+    const listaAfazer = response.data.afazeres
+    const afazer_realizadas = listaAfazer.filter(afazer => afazer.concluido)
 
-    const calculo_percentual = (AFazer.length < 1 ? 0 : AFazer_realizadas.length / AFazer.length) * 100
+    const calculo_percentual = (listaAfazer.length < 1 ? 0 : afazer_realizadas.length / listaAfazer.length) * 100
 
     setPercentual(calculo_percentual)
   }
@@ -50,13 +50,12 @@ const AFazer = () => {
   const loadTasks = async () => {
 
     try {
-      const response = await api.get(`projetos/${projeto}?_embed=afazeres`); 
-      const AFazer = response.data.afazeres
-      console.warn(AFazer)
-      setTasks(AFazer)
+      const response = await api.get(`projetos/${idDoProjeto}?_embed=afazeres`); 
+      const listaAfazer = response.data.afazeres
+      setTasks(listaAfazer)
       
     } catch (err) {
-      console.warn("Falha ao recuperar as AFazer.")
+      console.warn("Falha ao recuperar afazeres.")
     }
   }
 
@@ -65,13 +64,13 @@ const AFazer = () => {
     if (newTask == "") {
       // if (newTask.isEmpty()) {
       // if (!(!!newTask)) {
-      console.warn("você deve preencher a tarefa")
+      console.warn("Você deve preencher o afazer")
       return
     }
     const params = {
       descricao: newTask,
       concluido: false,
-      projetoId: projeto
+      projetoId: idDoProjeto
     }
 
     try {
@@ -80,7 +79,7 @@ const AFazer = () => {
       loadTasks();
       percentualAFazerRealizados();
     } catch (err) {
-      console.warn("erro ao salvar a tarefa")
+      console.warn("Erro ao salvar o afazer")
     }
 
   }
@@ -108,7 +107,7 @@ const AFazer = () => {
       loadTasks();
       percentualAFazerRealizados();
     } catch (err) {
-      console.warn("erro ao deletar tarefa")
+      console.warn("Erro ao deletar o afazer")
     }
     // console.warn(`delete ${id}`)
   }
@@ -119,19 +118,13 @@ const AFazer = () => {
     percentualAFazerRealizados();
   }, [])
 
-  //Aerá executado toda vez que NewTask sofrer alterações
-  //apenas um exemplo, sem relação com a solução atual
-  useEffect(() => {
-    // console.warn(newTask)
-  }, [newTask])
-
-  const oi = tasks.filter(a => a.projetoId == projeto)
+  const afazeres = tasks.filter(a => a.projetoId == idDoProjeto)
 
   return (
     <Container>
       <FormEnviar>
         <Input
-          placeholder="Incluir projeto..."
+          placeholder="Incluir afazer..."
           onChangeText={(letras) => { setNewTask(letras) }}
           value={newTask}
         />
@@ -156,7 +149,7 @@ const AFazer = () => {
       <Tasks showsVerticalScrollIndicator={false}>
 
 
-        {oi.map(a =>
+        {afazeres.map(a =>
           
           <TaskContainer key={a.id} finalizado={a.concluido}>
            
