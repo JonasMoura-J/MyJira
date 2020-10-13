@@ -38,11 +38,11 @@ const AFazer = () => {
   const [newTask, setNewTask] = useState("");
 
   const percentualAFazerRealizados = async () => {
-    const resultado = await api.get("afazeres");
-    const AFazer = resultado.data
+    const response = await api.get(`projetos/${projeto}?_embed=afazeres`); 
+    const AFazer = response.data.afazeres
     const AFazer_realizadas = AFazer.filter(tarefa => tarefa.concluido)
 
-    const calculo_percentual = (AFazer_realizadas.length / AFazer.length) * 100
+    const calculo_percentual = (AFazer.length < 1 ? 0 : AFazer_realizadas.length / AFazer.length) * 100
 
     setPercentual(calculo_percentual)
   }
@@ -50,8 +50,8 @@ const AFazer = () => {
   const loadTasks = async () => {
 
     try {
-      const response = await api.get("afazeres"); 
-      const AFazer = response.data
+      const response = await api.get(`projetos/${projeto}?_embed=afazeres`); 
+      const AFazer = response.data.afazeres
       console.warn(AFazer)
       setTasks(AFazer)
       
@@ -129,7 +129,6 @@ const AFazer = () => {
 
   return (
     <Container>
-      {console.warn("hihi",projeto)}
       <FormEnviar>
         <Input
           placeholder="Incluir projeto..."
