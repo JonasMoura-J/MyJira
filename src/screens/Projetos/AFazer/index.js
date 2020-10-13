@@ -26,7 +26,7 @@ import ProgressCircle from 'react-native-progress-circle';
 // import { UsuarioContext } from '../../contexts/user';
 import { UsuarioContext } from '../../../../contexts/user';
 
-const AFazer = () => {
+const AFazer = (props) => {
   const {user} = useContext(UsuarioContext);
 
   const [percentual, setPercentual] = useState(0);
@@ -157,7 +157,7 @@ const AFazer = () => {
 
         {oi.map(a =>
           
-          <TaskText>{a.descricao}</TaskText>
+        <TaskText>"oi"</TaskText>
           // <TaskContainer>
            
           //     <TaskText>{p.afazer}</TaskText>

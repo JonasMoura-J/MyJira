@@ -24,10 +24,20 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import ProgressCircle from 'react-native-progress-circle';
 
 import { UsuarioContext } from '../../../contexts/user';
+import AllTasks from '../../components/AllTasks';
+import AFazer from './AFazer';
+import { ProjetoContext } from '../../../contexts/projeto';
+
+
 
 const Projetos = () => {
 
+    let troca = false
+    const [id, setId] = useState('');
+
     const {user} = useContext(UsuarioContext);
+
+    const {EntrarProjeto} = useContext(ProjetoContext);
 
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
@@ -109,17 +119,19 @@ const Projetos = () => {
   //Navegação para as tarefas de projetos
   const navigation = useNavigation();
 
-  const handleProject = () => {
+  const handleProject = (id) => {
+    EntrarProjeto(id)
     navigation.reset({
       routes:[{name: 'AFazer'}]
   });
   }
 
   const oi = tasks.filter(p => p.usuarioId == user.id)
-
+  
   return (
+  
     <Container>
-      
+    
       <FormEnviar>
         <Input
           placeholder="Incluir projeto..."
@@ -134,7 +146,7 @@ const Projetos = () => {
       <Tasks showsVerticalScrollIndicator={false}>
 
         {oi.map(p => (
-        <ButtonProjects onPress={handleProject}>
+        <ButtonProjects onPress={()=> handleProject(p.id)}>
           <TaskContainer key={p.id} finalizado={p.concluido}>
            
               <TaskText>{p.descricao}</TaskText>
@@ -164,7 +176,7 @@ const Projetos = () => {
         )
         )}
       </Tasks>
-    </Container>
+    </Container> 
   )
 }
 
