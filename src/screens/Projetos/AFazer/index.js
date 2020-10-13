@@ -25,11 +25,12 @@ import ProgressCircle from 'react-native-progress-circle';
 
 // import { UsuarioContext } from '../../contexts/user';
 import { UsuarioContext } from '../../../../contexts/user';
+import { ProjetoContext } from '../../../../contexts/projeto';
 
 const AFazer = () => {
   const {user} = useContext(UsuarioContext);
 
-  const {projeto} = useContext(UsuarioContext);
+  const {projeto} = useContext(ProjetoContext);
 
   const [percentual, setPercentual] = useState(0);
 
@@ -37,7 +38,7 @@ const AFazer = () => {
   const [newTask, setNewTask] = useState("");
 
   const percentualAFazerRealizados = async () => {
-    const resultado = await api.get("afazer");
+    const resultado = await api.get("afazeres");
     const AFazer = resultado.data.afazer
     const AFazer_realizadas = AFazer.filter(tarefa => tarefa.concluido)
 
