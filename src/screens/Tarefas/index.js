@@ -24,6 +24,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import bg from '../../assets/fundo.jpg'
 import logo from '../../assets/logo2.png'
 import ProgressCircle from 'react-native-progress-circle';
+import ProgressLine from '../../components/ProgressLine';
 
 const Tarefas = () =>{
 
@@ -133,7 +134,8 @@ const Tarefas = () =>{
         
         </FormEnviar>
       </ImageBackground>
-        <ProgressContainer>
+      <ProgressLine percent={percentual}/>
+        {/* <ProgressContainer>
           <ProgressCircle
             percent={percentual}
             radius={70}
@@ -144,7 +146,7 @@ const Tarefas = () =>{
           >
           <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{`${percentual.toFixed(0)}%`}</Text>
           </ProgressCircle>
-      </ProgressContainer>
+      </ProgressContainer> */}
 
       <Tasks showsVerticalScrollIndicator={false}>
       {tarefas.map(task => (
