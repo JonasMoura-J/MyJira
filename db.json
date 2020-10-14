@@ -51,7 +51,7 @@
       "projetoId": 1,
       "usuarioId": 1,
       "id": 2,
-      "concluido": true
+      "concluido": false
     },
     {
       "descricao": "Aprender css",

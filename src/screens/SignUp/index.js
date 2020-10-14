@@ -8,17 +8,15 @@ import {
     InputArea,
     SignMessageButton,
     SignMessageButtonText,
-    SignMessageButtonTextBold,
-    Imagem
+    SignMessageButtonTextBold
 } from './styles'; 
 
-
-import agenda from '../../assets/agenda.png';
 import EmailIcon from '../../assets/email.svg';
 import LockIcon from '../../assets/lock.svg';
 import PersonIcon from '../../assets/person.svg';
-import { Alert , Animated, Easing } from 'react-native';
+import { Alert} from 'react-native';
 import api from '../../../services/api';
+import AnimatedImage from '../../components/AnimatedImage';
 
 export default () => {
     const navigation = useNavigation();
@@ -65,33 +63,10 @@ export default () => {
         }
     
       }
-      
-    let spinValue = new Animated.Value(0)
-
-    // First set up animation 
-    Animated.timing(
-        spinValue,
-    {
-        toValue: 1,
-        duration: 3000,
-        easing: Easing.linear,
-        useNativeDriver: true  // To make use of native driver for performance
-    }
-    ).start()
-
-    // Second interpolate beginning and end values (in this case 0 and 1)
-    const spin = spinValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg']
-
-    })
 
     return (
         <Container>
-            <Animated.Image
-                style={{transform: [{rotateY: spin}], height: 100, width: 100}}
-                source={agenda} />
-
+            <AnimatedImage/>
             <InputArea>
                 <SignInput 
                     IconSvg={PersonIcon}
