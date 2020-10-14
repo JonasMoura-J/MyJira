@@ -19,6 +19,7 @@ export const TaskContainer = styled.View`
 `;
 
 export const Tasks = styled.ScrollView`
+  margin-top: 18px;
 `;
 
 export const Task = styled.View`

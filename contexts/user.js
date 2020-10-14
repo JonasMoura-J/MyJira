@@ -3,14 +3,11 @@ import React, { createContext, useState, useEffect } from 'react';
 import api from '../services/api';
 
 import AsyncStorage from '@react-native-community/async-storage';
-
+import {Alert} from 'react-native'
 const UsuarioContext = createContext({});
 
 const UsuarioProvider = ({ children }) => {
-
   const [user, setUser] = useState(null);
-
-
 
   useEffect(() => {
 

@@ -134,7 +134,7 @@ const Tarefas = () =>{
         
         </FormEnviar>
       </ImageBackground>
-      <ProgressLine percent={percentual}/>
+      <ProgressLine percent={percentual} textPercent={`${percentual.toFixed(0)}%`}/>
         {/* <ProgressContainer>
           <ProgressCircle
             percent={percentual}

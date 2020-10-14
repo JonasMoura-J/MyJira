@@ -10,7 +10,6 @@ const ProjetoIdProvider = ({ children }) => {
 
 
   useEffect(() => {
-
     const loadData = async () => {
       const idProjeto = await AsyncStorage.getItem("@JIRA:idProjeto")
       if (idProjeto) {

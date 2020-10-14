@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Image, ImageBackground } from 'react-native';
+import { Alert,Text, Image, ImageBackground } from 'react-native';
 
 import {
   Container,
