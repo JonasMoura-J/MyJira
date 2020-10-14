@@ -61,7 +61,7 @@ export default () => {
         inputRange: [0, 1],
         outputRange: ['0deg', '360deg']
 
-})
+    })
     return (
         <Container>
             <Animated.Image
