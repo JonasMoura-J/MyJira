@@ -18,7 +18,7 @@ const AppRoutes = () => {
         initialRouteName="Tarefas"
         tabBarOptions={
             {
-            activeTintColor: 'tomato',
+            activeTintColor: '#a4d43a',
             inactiveTintColor: '#ccc'
             }
         }>

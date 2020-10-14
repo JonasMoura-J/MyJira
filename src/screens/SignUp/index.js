@@ -17,7 +17,7 @@ import agenda from '../../assets/agenda.png';
 import EmailIcon from '../../assets/email.svg';
 import LockIcon from '../../assets/lock.svg';
 import PersonIcon from '../../assets/person.svg';
-import { Alert } from 'react-native';
+import { Alert , Animated, Easing } from 'react-native';
 import api from '../../../services/api';
 
 export default () => {
@@ -36,7 +36,7 @@ export default () => {
     const handleAddAccount = async () => {
         
         if (nome == "" || email =="" || senha == "") {
-          console.warn("Você deve preencher todos os campos")
+          Alert.alert("","Você deve preencher todos os campos",[{text:'ok'}])
           return
         }
 
@@ -44,7 +44,7 @@ export default () => {
         const emailExistente = listaUsuarios.data.find(u => u.email == email)
         
         if (emailExistente) {
-          Alert.alert("", "E-mail já cadastrado", [{text:"ok"}])
+          Alert.alert("","", "E-mail já cadastrado", [{text:"ok"}])
           return  
         }
 
@@ -53,20 +53,45 @@ export default () => {
             email: email,
             password: senha
         }
+
         try {
           await api.post("usuarios", params);
           setNome('')
           setEmail('')
           setSenha('')
-          Alert.Alert("Usuario cadastrado com sucesso!")
+          Alert.alert("","Usuario cadastrado com sucesso!",[{text:'ok'}])
         } catch (err) {
-          console.warn("Erro ao salvar usuario")
+          Alert.alert("","Erro ao salvar usuario",[{text:'ok'}])
         }
     
       }
+      
+    let spinValue = new Animated.Value(0)
+
+    // First set up animation 
+    Animated.timing(
+        spinValue,
+    {
+        toValue: 1,
+        duration: 3000,
+        easing: Easing.linear,
+        useNativeDriver: true  // To make use of native driver for performance
+    }
+    ).start()
+
+    // Second interpolate beginning and end values (in this case 0 and 1)
+    const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg']
+
+    })
+
     return (
         <Container>
-            <Imagem source={agenda} style ={{height: 100, width: 100}}/>
+            <Animated.Image
+                style={{transform: [{rotateY: spin}], height: 100, width: 100}}
+                source={agenda} />
+
             <InputArea>
                 <SignInput 
                     IconSvg={PersonIcon}

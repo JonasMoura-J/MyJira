@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text } from 'react-native';
+import { Text, Image, ImageBackground } from 'react-native';
 
 import {
   Container,
@@ -13,12 +13,16 @@ import {
   Tasks,
   TaskText,
   BoxIcon,
-  ProgressContainer
+  ProgressContainer,
+  Logo,
+  TextLogo
 } from './styles'
 
 import api from '../../../../services/api';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import bg from '../../../assets/fundo.jpg'
+import logo from '../../../assets/logo2.png'
 
 import ProgressCircle from 'react-native-progress-circle';
 
@@ -51,7 +55,7 @@ const AFazer = () => {
       setTasks(listaAfazer)
       
     } catch (err) {
-      console.warn("Falha ao recuperar afazeres.")
+      Alert.alert("","Falha ao recuperar afazeres.",[{text:'ok'}])
     }
   }
 
@@ -59,7 +63,7 @@ const AFazer = () => {
 
     if (newTask == "") {
 
-      console.warn("Você deve preencher o afazer")
+      Alert.alert("","Você deve preencher o afazer",[{text:'ok'}])
       return
     }
     const params = {
@@ -74,7 +78,7 @@ const AFazer = () => {
       loadTasks();
       percentualAFazerRealizados();
     } catch (err) {
-      console.warn("Erro ao salvar o afazer")
+      Alert.alert("","Erro ao salvar o afazer",[{text:'ok'}])
     }
 
   }
@@ -102,7 +106,7 @@ const AFazer = () => {
       loadTasks();
       percentualAFazerRealizados();
     } catch (err) {
-      console.warn("Erro ao deletar o afazer")
+      Alert.alert("","Erro ao deletar o afazer",[{text:'ok'}])
     }
 
   }
@@ -116,16 +120,22 @@ const AFazer = () => {
 
   return (
     <Container>
-      <FormEnviar>
-        <Input
-          placeholder="Incluir afazer..."
-          onChangeText={(letras) => { setNewTask(letras) }}
-          value={newTask}
-        />
-        <Button onPress={handleAddTasks}>
-          <TextButton>Criar</TextButton>
-        </Button>
-      </FormEnviar>
+      <ImageBackground source={bg} style ={{height: 150, width: 400}}>
+        <Logo>
+          <Image source={logo} style ={{height: 45, width: 45, margin: 8}}/>
+          <TextLogo>MyJira</TextLogo>
+        </Logo>
+        <FormEnviar>
+          <Input
+            placeholder="Incluir afazer..."
+            onChangeText={(letras) => { setNewTask(letras) }}
+            value={newTask}
+          />
+          <Button onPress={handleAddTasks}>
+            <TextButton>Criar</TextButton>
+          </Button>
+        </FormEnviar>
+      </ImageBackground>
 
       <ProgressContainer>
         <ProgressCircle

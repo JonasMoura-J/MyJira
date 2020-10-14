@@ -37,7 +37,7 @@ export const ProjectActions = styled.View`
 
 export const FormEnviar = styled.View`
   flex-direction:row;
-  margin-top:10px;
+  margin:10px 5px 0 5px;
 `;
 
 export const Input = styled.TextInput`
@@ -72,4 +72,13 @@ export const ProgressContainer = styled.View`
 export const ButtonProjects = styled.TouchableOpacity`
   width:100%;
   height:70px;
+`;
+export const Logo = styled.View `
+flex-direction:row;
+`;
+export const TextLogo = styled.Text `
+  font-size:30px;
+  margin: 10px 5px;
+  color:#fff;
+  font-weight:bold;s
 `;

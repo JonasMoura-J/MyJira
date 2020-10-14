@@ -40,7 +40,7 @@ const UsuarioProvider = ({ children }) => {
       await AsyncStorage.setItem("@JIRA:user", JSON.stringify(user));
 
     } else {
-      console.warn("Senha ou Usuário inválidos.")
+      Alert.alert("","Senha ou Usuário inválidos.",[{text:'ok'}])
     }
 
   }

@@ -36,12 +36,6 @@
       "id": 1,
       "usuarioId": 1,
       "concluido": false
-    },
-    {
-      "descricao": "Proj",
-      "usuarioId": 1,
-      "concluido": false,
-      "id": 2
     }
   ],
   "afazeres": [
@@ -57,19 +51,13 @@
       "projetoId": 1,
       "usuarioId": 1,
       "id": 2,
-      "concluido": false
+      "concluido": true
     },
     {
       "descricao": "Aprender css",
       "projetoId": 1,
       "usuarioId": 1,
       "id": 3,
-      "concluido": true
-    },
-    {
-      "descricao": "Fg",
-      "projetoId": 2,
-      "id": 4,
       "concluido": true
     }
   ],
@@ -79,18 +67,6 @@
       "usuarioId": 1,
       "id": 1,
       "concluido": true
-    },
-    {
-      "descricao": "Aquu",
-      "usuarioId": 1,
-      "id": 2,
-      "concluido": false
-    },
-    {
-      "descricao": "Foi?",
-      "concluido": false,
-      "usuarioId": 1,
-      "id": 3
     }
   ]
 }

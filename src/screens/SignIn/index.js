@@ -16,7 +16,7 @@ import {
 import agenda from '../../assets/agenda.png';
 import EmailIcon from '../../assets/email.svg';
 import LockIcon from '../../assets/lock.svg';
-
+import { Alert, Animated, Easing } from 'react-native';
 import { UsuarioContext } from '../../../contexts/user';
 
 export default () => {
@@ -39,12 +39,35 @@ export default () => {
         try {
           await signIn(email, password)
         } catch (err) {
-          console.warn('ola erro ao realizar a requisição')
+          Alert.alert("",'ola erro ao realizar a requisição',[{text:'ok'}])
       }
     }
+
+    let spinValue = new Animated.Value(0)
+
+        // First set up animation 
+        Animated.timing(
+            spinValue,
+        {
+            toValue: 1,
+            duration: 3000,
+            easing: Easing.linear,
+            useNativeDriver: true  // To make use of native driver for performance
+        }
+        ).start()
+
+        // Second interpolate beginning and end values (in this case 0 and 1)
+        const spin = spinValue.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg']
+
+})
     return (
         <Container>
-            <Imagem source={agenda} style ={{height: 100, width: 100}}/>
+            <Animated.Image
+                style={{transform: [{rotateY: spin}], height: 100, width: 100}}
+                source={agenda} />
+            
             <InputArea>
                 <SignInput 
                     IconSvg={EmailIcon}

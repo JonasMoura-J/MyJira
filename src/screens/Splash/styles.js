@@ -17,6 +17,7 @@ export const Imagem = styled.Image`
 
 export const CustomText = styled.Text`
     margin-top:20px;
-    font-size: 25px;
+    font-size: 35px;
     color: #FFF;
-`; 
+    font-weight: bold;
+`;

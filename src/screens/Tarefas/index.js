@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text } from 'react-native';
+import { Text, Image, ImageBackground } from 'react-native';
 
 import {
   Container,
@@ -13,13 +13,16 @@ import {
   Tasks,
   TaskText,
   BoxIcon,
-  ProgressContainer
+  ProgressContainer,
+  Logo,
+  TextLogo
 } from './styles'
 import api from '../../../services/api';
 import { UsuarioContext } from '../../../contexts/user';
-
+import { Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
+import bg from '../../assets/fundo.jpg'
+import logo from '../../assets/logo2.png'
 import ProgressCircle from 'react-native-progress-circle';
 
 const Tarefas = () =>{
@@ -33,7 +36,7 @@ const Tarefas = () =>{
     const listaTarefas = resultado.data.tarefas
     const tarefas_realizadas = listaTarefas.filter(tarefa => tarefa.concluido)
 
-    const calculo_percentual = (tarefas_realizadas.length / listaTarefas.length) * 100
+    const calculo_percentual = (listaTarefas.length < 1 ? 0 : tarefas_realizadas.length / listaTarefas.length) * 100
 
     setPercentual(calculo_percentual)
   }
@@ -50,14 +53,14 @@ const Tarefas = () =>{
       setTasks(response.data)
       
     } catch (err) {
-      console.warn("Falha ao recuperar as tarefas.")
+      Alert.alert("","Falha ao recuperar as tarefas.",[{text:'ok'}])
     }
   }
 
   const handleAddTasks = async () => {
 
     if (newTask == "") {
-      console.warn("Você deve preencher a tarefa")
+      Alert.alert("","Você deve preencher a tarefa",[{text:'ok'}])
       return
     }
     const params = {
@@ -72,7 +75,7 @@ const Tarefas = () =>{
       loadTasks();
       percentualTarefasRealizadas();
     } catch (err) {
-      console.warn("Erro ao salvar a tarefa")
+      Alert.alert("","Erro ao salvar a tarefa",[{text:'ok'}])
     }
   }
 
@@ -99,7 +102,7 @@ const Tarefas = () =>{
       loadTasks();
       percentualTarefasRealizadas();
     } catch (err) {
-      console.warn("Erro ao deletar tarefa")
+      Alert.alert("","Erro ao deletar tarefa",[{text:'ok'}])
     }
    
   }
@@ -113,6 +116,11 @@ const Tarefas = () =>{
 
   return (
     <Container>
+      <ImageBackground source={bg} style ={{height: 150, width: 400}}>
+      <Logo>
+        <Image source={logo} style ={{height: 45, width: 45, margin: 8}}/>
+        <TextLogo>MyJira</TextLogo>
+      </Logo>
       <FormEnviar>
         <Input
           placeholder="Incluir tarefas..."
@@ -123,8 +131,8 @@ const Tarefas = () =>{
           <TextButton>Criar</TextButton>
         </Button>
         
-      </FormEnviar>
-
+        </FormEnviar>
+      </ImageBackground>
         <ProgressContainer>
           <ProgressCircle
             percent={percentual}

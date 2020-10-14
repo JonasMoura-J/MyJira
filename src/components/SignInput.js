@@ -17,6 +17,7 @@ const Input = styled.TextInput`
     font-size: 16px;
     color: #268596;
     margin-left: 10px;
+    font-family:Open-Sans;
 `;
 
 export default ({IconSvg, placeholder, value, onChangeText, password}) => {

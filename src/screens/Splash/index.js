@@ -24,7 +24,7 @@ export default () => {
     return (
         <Container>
             <Imagem source={logo2}/>
-            <CustomText>My Jira</CustomText>
+            <CustomText>MyJira</CustomText>
             <LoadingIcon size="large" color="#a4d43a"/>
         </Container>
     );

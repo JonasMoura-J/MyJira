@@ -11,12 +11,16 @@ import {
   Projects,
   ProjectText,
   BoxIcon,
-  ButtonProjects
+  ButtonProjects,
+  Logo,
+  TextLogo
 } from './styles'
 import { useNavigation } from '@react-navigation/native';
 import api from '../../../services/api';
-
+import { Alert, Image, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import bg from '../../assets/fundo.jpg'
+import logo from '../../assets/logo2.png'
 
 import { UsuarioContext } from '../../../contexts/user';
 import { ProjetoIdContext } from '../../../contexts/projeto';
@@ -36,16 +40,16 @@ const Projetos = () => {
         setProjects(response.data)
 
       } catch (err) {
-        console.warn("Falha ao recuperar os projetos.")
+        Alert.alert("","Falha ao recuperar os projetos.",[{text:'ok'}])
       }
     }
 
   const handleAddProject = async () => {
-    
     if (newProject == "") {
-      console.warn("Você deve preencher um projeto")
+      Alert.alert("","Você deve preencher um projeto",[{text:'ok'}])
       return
     }
+
     const params = {
       descricao: newProject,
       usuarioId: user.id,
@@ -53,14 +57,13 @@ const Projetos = () => {
     }
 
     try {
-      console.warn(params)
       await api.post("projetos", params);
       setNewProject("");
       loadProject();
     } catch (err) {
-      console.warn("Erro ao salvar o projeto")
+      Alert.alert("","Erro ao salvar o projeto",[{text:'ok'}])
     }
-
+  
   }
 
   const handleProject = async (project) => {
@@ -86,7 +89,7 @@ const Projetos = () => {
       await api.delete(`projetos/${id}`);
       loadProject();
     } catch (err) {
-      console.warn("Erro ao deletar o projeto")
+      Alert.alert("","Erro ao deletar o projeto",[{text:'ok'}])
     }
 
   }
@@ -109,7 +112,11 @@ const Projetos = () => {
   return (
   
     <Container>
-    
+      <ImageBackground source={bg} style ={{height: 150, width: 400}}>
+      <Logo>
+        <Image source={logo} style ={{height: 45, width: 45, margin: 8}}/>
+        <TextLogo>MyJira</TextLogo>
+      </Logo>
       <FormEnviar>
         <Input
           placeholder="Incluir projeto..."
@@ -120,6 +127,7 @@ const Projetos = () => {
           <TextButton>Criar</TextButton>
         </Button>
       </FormEnviar>
+      </ImageBackground>
 
       <Projects showsVerticalScrollIndicator={false}>
 
