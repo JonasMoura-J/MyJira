@@ -45,6 +45,11 @@ const AFazer = () => {
     const calculo_percentual = (listaAfazer.length < 1 ? 0 : afazer_realizadas.length / listaAfazer.length) * 100
 
     setPercentual(calculo_percentual)
+    handleProjetos(calculo_percentual)
+    
+  }
+
+  const handleProjetos = async (calculo_percentual) => {
     
     const resposta = await api.get(`projetos/${idDoProjeto}`);
     const r = resposta.data

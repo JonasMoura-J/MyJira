@@ -88,7 +88,7 @@ const Projetos = () => {
   const handleRemoveProject = async ({ id }) => {
     
     try {
-      await api.delete(`projetos/${id}`);
+      await api.delete(`projetos/${id}?_embed=afazeres`);
       loadProject();
     } catch (err) {
       Alert.alert("","Erro ao deletar o projeto",[{text:'ok'}])
