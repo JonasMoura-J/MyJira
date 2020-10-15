@@ -13,14 +13,13 @@ const ItemInput = (props) =>{
         <FormEnviar>
             
             <Input
-                placeholder="Incluir tarefas..."
+                placeholder={`Incluir ${props.type}...`}
                 onChangeText={(letras) => { props.setInput(letras) }}
                 value={props.input}
             />
             <Button onPress={props.handleAdd}>
                 <TextButton>Criar</TextButton>
             </Button>
-            
         </FormEnviar>
     );
 }

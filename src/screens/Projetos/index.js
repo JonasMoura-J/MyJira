@@ -68,22 +68,22 @@ const Projetos = () => {
   
   }
 
-  const handleProject = async (project) => {
+   const handleProject = async (project) => {
     
-    const params = {
-      ...project,
-      concluido: !project.concluido
-    }
+  //   const params = {
+  //     ...project,
+  //     concluido: !project.concluido
+  //   }
   
 
-    try {
+  //   try {
       
-      await api.put(`projetos/${project.id}`, params);
-      loadProject();
-    } catch (err) {
+  //     await api.put(`projetos/${project.id}`, params);
+  //     loadProject();
+  //   } catch (err) {
 
-    }
-  }
+  //   }
+   }
 
   const handleRemoveProject = async ({ id }) => {
     
@@ -120,7 +120,7 @@ const Projetos = () => {
         <TextLogo>MyJira</TextLogo>
       </Logo>
 
-      <ItemInput input={newProject} setInput={setNewProject} handleAdd={handleAddProject}/>
+      <ItemInput input={newProject} setInput={setNewProject} handleAdd={handleAddProject} type= 'projetos'/>
 
       </ImageBackground>
 

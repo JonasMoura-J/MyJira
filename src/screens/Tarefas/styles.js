@@ -79,3 +79,8 @@ export const TextLogo = styled.Text `
   color:#fff;
   font-weight:bold;
 `
+export const TextTitle = styled.Text`
+  font-size:27px;
+  color:#fff;
+  text-align: center;
+`;

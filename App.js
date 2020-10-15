@@ -9,11 +9,12 @@ import {LogBox} from 'react-native'
 export default () => {
   LogBox.ignoreLogs(['Animated: `useNativeDriver` was not specified.'])
   LogBox.ignoreLogs(['componentWillReceiveProps has been renamed'])
+
   return (
     <UsuarioProvider>
-        <ProjetoIdProvider>
+      <ProjetoIdProvider>
         <Routes />
-      </ProjetoIdProvider>    
+     </ProjetoIdProvider>    
     </UsuarioProvider>
   );
 }

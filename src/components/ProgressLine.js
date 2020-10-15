@@ -19,7 +19,7 @@ const ProgressLine = (props) =>{
           <ProgressBarAnimated
             width={barWidth}
             value={props.percent}
-            backgroundColorOnComplete="#6CC644"
+            backgroundColorOnComplete= {props.percent == 100 ? "#6CC644" : "#148cF0"}
             useNativeDriver = {true}
             title ={`${props.percent.toFixed(0)}%`}
             />

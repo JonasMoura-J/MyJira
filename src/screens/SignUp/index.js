@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { UsuarioContext } from '../../../contexts/user';
 import SignInput from '../../components/SignInput';
 import { 
     Container, 
@@ -20,6 +21,7 @@ import AnimatedImage from '../../components/AnimatedImage';
 
 export default () => {
     const navigation = useNavigation();
+    const { signIn } = useContext(UsuarioContext);
 
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
@@ -57,7 +59,15 @@ export default () => {
           setNome('')
           setEmail('')
           setSenha('')
+
           Alert.alert("","Usuario cadastrado com sucesso!",[{text:'ok'}])
+
+           try {
+                await signIn(email, senha)
+            } catch (err) {
+                Alert.alert("",'erro de log',[{text:'ok'}])
+            }
+
         } catch (err) {
           Alert.alert("","Erro ao salvar usuario",[{text:'ok'}])
         }

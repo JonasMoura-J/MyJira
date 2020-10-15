@@ -3,19 +3,10 @@ import { Text, Image, ImageBackground, View } from 'react-native';
 
 import {
   Container,
-  Task,
-  TaskContainer,
-  TaskActions,
-  Input,
-  Button,
-  TextButton,
-  FormEnviar,
   Tasks,
-  TaskText,
-  BoxIcon,
-  ProgressContainer,
   Logo,
-  TextLogo
+  TextLogo,
+  TextTitle
 } from './styles'
 import api from '../../../services/api';
 import { UsuarioContext } from '../../../contexts/user';
@@ -120,7 +111,7 @@ const Tarefas = () =>{
         <TextLogo>MyJira</TextLogo>
       </Logo>
 
-      <ItemInput input={newTask} setInput={setNewTask} handleAdd={handleAddTasks}/>
+      <ItemInput input={newTask} setInput={setNewTask} handleAdd={handleAddTasks} type= 'tarefas'/>
 
       </ImageBackground>
       
@@ -131,7 +122,6 @@ const Tarefas = () =>{
       {tasks.map(task => (
         
           <Item label={task} handle={handleTasks} handleRemove={handleRemoveTask} key={task.id}/>
-       
       ))}
 
       </Tasks>

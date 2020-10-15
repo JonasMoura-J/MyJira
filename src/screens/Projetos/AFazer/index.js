@@ -20,11 +20,9 @@ import {
 
 import api from '../../../../services/api';
 
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import bg from '../../../assets/fundo.jpg'
 import logo from '../../../assets/logo2.png'
 
-import ProgressCircle from 'react-native-progress-circle';
 
 import { ProjetoIdContext } from '../../../../contexts/projeto';
 import Item from '../../../components/Item';
@@ -44,10 +42,36 @@ const AFazer = () => {
     const response = await api.get(`projetos/${idDoProjeto}?_embed=afazeres`); 
     const listaAfazer = response.data.afazeres
     const afazer_realizadas = listaAfazer.filter(afazer => afazer.concluido)
-
     const calculo_percentual = (listaAfazer.length < 1 ? 0 : afazer_realizadas.length / listaAfazer.length) * 100
 
     setPercentual(calculo_percentual)
+    
+    const resposta = await api.get(`projetos/${idDoProjeto}`);
+    const r = resposta.data
+
+    if(calculo_percentual==100){    
+      const params = {
+        ...r,
+        concluido: true
+      }
+      try {
+        await api.put(`projetos/${idDoProjeto}`, params);
+      } catch (err) {
+        
+      }
+    }else{
+      const params = {
+        ...r,
+        concluido: false
+      }
+      try {
+        await api.put(`projetos/${idDoProjeto}`, params);
+
+      } catch (err) {
+        
+      }
+    }
+    
   }
   
   const loadTasks = async () => {
@@ -79,7 +103,7 @@ const AFazer = () => {
       await api.post("afazeres", params);
       setNewTask("");
       loadTasks();
-      percentualAFazerRealizados();
+      percentualAFazerRealizados(tasks);
     } catch (err) {
       Alert.alert("","Erro ao salvar o afazer",[{text:'ok'}])
     }
@@ -127,7 +151,7 @@ const AFazer = () => {
           <TextLogo>MyJira</TextLogo>
         </Logo>
 
-        <ItemInput input={newTask} setInput={setNewTask} handleAdd={handleAddTasks}/>
+        <ItemInput input={newTask} setInput={setNewTask} handleAdd={handleAddTasks} type= 'afazeres'/>
         
       </ImageBackground>
 
@@ -135,9 +159,9 @@ const AFazer = () => {
 
       <Tasks showsVerticalScrollIndicator={false}>
 
-        {tasks.map(a =>          
+        {tasks.map(a =>
 
-          <Item label={a} handle={handleTasks} handleRemove={handleRemoveTask}/>
+          <Item label={a} handle={handleTasks} handleRemove={handleRemoveTask} key={a.id}/>
         )}
 
       </Tasks>

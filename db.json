@@ -28,6 +28,30 @@
       "email": "meumalvadofavorito@gmail.com",
       "password": "123",
       "id": 5
+    },
+    {
+      "name": "jonas2",
+      "email": "moura@gmail.com",
+      "password": "123",
+      "id": 6
+    },
+    {
+      "name": "Raphael",
+      "email": "Joshua@gmail.com",
+      "password": "123",
+      "id": 7
+    },
+    {
+      "name": "teste",
+      "email": "Teste@gmail.com",
+      "password": "123",
+      "id": 8
+    },
+    {
+      "name": "marcela",
+      "email": "ma@gmail.com",
+      "password": "123",
+      "id": 9
     }
   ],
   "projetos": [
@@ -36,28 +60,37 @@
       "id": 1,
       "usuarioId": 1,
       "concluido": false
-    }
-  ],
-  "afazeres": [
-    {
-      "descricao": "Mentira",
-      "projetoId": 1,
-      "usuarioId": 1,
-      "id": 1,
-      "concluido": true
     },
     {
-      "descricao": "Aprender react native",
-      "projetoId": 1,
+      "descricao": "Projeto Alterdata",
       "usuarioId": 1,
       "id": 2,
       "concluido": false
     },
     {
-      "descricao": "Aprender css",
-      "projetoId": 1,
+      "descricao": "Projeto Sumicity",
       "usuarioId": 1,
-      "id": 3,
+      "concluido": false,
+      "id": 3
+    },
+    {
+      "descricao": "Projeto Prefeitura",
+      "usuarioId": 1,
+      "concluido": false,
+      "id": 4
+    }
+  ],
+  "afazeres": [
+    {
+      "descricao": "Terminar estilos",
+      "projetoId": 1,
+      "id": 1,
+      "concluido": true
+    },
+    {
+      "descricao": "validar campos",
+      "projetoId": 1,
+      "id": 2,
       "concluido": false
     }
   ],
@@ -69,28 +102,16 @@
       "concluido": true
     },
     {
-      "descricao": "alou",
+      "descricao": "Aprender Regex",
       "usuarioId": 1,
       "id": 2,
       "concluido": true
     },
     {
-      "descricao": "a",
+      "descricao": "Aprender fazer Miojo",
       "usuarioId": 1,
       "id": 3,
       "concluido": true
-    },
-    {
-      "descricao": "Ff",
-      "usuarioId": 1,
-      "id": 5,
-      "concluido": true
-    },
-    {
-      "descricao": "Puts",
-      "usuarioId": 1,
-      "id": 6,
-      "concluido": false
     }
   ]
 }
