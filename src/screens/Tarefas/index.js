@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Image, ImageBackground } from 'react-native';
+import { Text, Image, ImageBackground, View } from 'react-native';
 
 import {
   Container,
@@ -20,10 +20,8 @@ import {
 import api from '../../../services/api';
 import { UsuarioContext } from '../../../contexts/user';
 import { Alert } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import bg from '../../assets/fundo.jpg'
 import logo from '../../assets/logo2.png'
-import ProgressCircle from 'react-native-progress-circle';
 import ProgressLine from '../../components/ProgressLine';
 import Item from '../../components/Item';
 import ItemInput from '../../components/ItemInput';
@@ -112,7 +110,7 @@ const Tarefas = () =>{
   useEffect(() => {
     loadTasks();
     percentualTarefasRealizadas();
-  }, [])
+  },[])
 
   return (
     <Container>
@@ -131,9 +129,9 @@ const Tarefas = () =>{
       <Tasks showsVerticalScrollIndicator={false}>
         
       {tasks.map(task => (
-
-        <Item label={task} handle={handleTasks} handleRemove={handleRemoveTask}/>
-
+        
+          <Item label={task} handle={handleTasks} handleRemove={handleRemoveTask} key={task.id}/>
+       
       ))}
 
       </Tasks>

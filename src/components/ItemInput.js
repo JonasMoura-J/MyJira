@@ -11,7 +11,7 @@ const ItemInput = (props) =>{
 
     return (
         <FormEnviar>
-            {console.warn(props.setInput)}
+            
             <Input
                 placeholder="Incluir tarefas..."
                 onChangeText={(letras) => { props.setInput(letras) }}

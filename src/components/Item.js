@@ -13,7 +13,7 @@ const Item = (props) =>{
 
     return (
         <TaskContainer key={props.label.id} finalizado={props.label.concluido}>
-            {console.warn(props.label)}
+           
             <TaskText>{props.label.descricao}</TaskText>
 
             <TaskActions>

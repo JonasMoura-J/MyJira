@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
-import { color } from 'react-native-reanimated';
 
 const ProgressLine = (props) =>{
 
