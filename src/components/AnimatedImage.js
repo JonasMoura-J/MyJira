@@ -30,4 +30,4 @@ let spinValue = new Animated.Value(0)
             source={agenda}/>
     )
 }
-export default AnimatedImage;
+export default React.memo(AnimatedImage);

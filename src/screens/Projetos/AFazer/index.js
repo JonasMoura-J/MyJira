@@ -119,8 +119,6 @@ const AFazer = () => {
     percentualAFazerRealizados();
   }, [])
 
-  const afazeres = tasks.filter(a => a.projetoId == idDoProjeto)
-
   return (
     <Container>
       <ImageBackground source={bg} style ={{height: 150, width: 400}}>
@@ -137,7 +135,7 @@ const AFazer = () => {
 
       <Tasks showsVerticalScrollIndicator={false}>
 
-        {afazeres.map(a =>          
+        {tasks.map(a =>          
 
           <Item label={a} handle={handleTasks} handleRemove={handleRemoveTask}/>
         )}

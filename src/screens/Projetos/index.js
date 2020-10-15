@@ -25,6 +25,7 @@ import logo from '../../assets/logo2.png'
 import { UsuarioContext } from '../../../contexts/user';
 import { ProjetoIdContext } from '../../../contexts/projeto';
 import Item from '../../components/Item';
+import ItemInput from '../../components/ItemInput';
 
 const Projetos = () => {
 
@@ -119,7 +120,7 @@ const Projetos = () => {
         <TextLogo>MyJira</TextLogo>
       </Logo>
 
-      <ItemInput input={newProject} setInput={setNewProject} handleAdd={handleAddTasks}/>
+      <ItemInput input={newProject} setInput={setNewProject} handleAdd={handleAddProject}/>
 
       </ImageBackground>
 

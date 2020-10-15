@@ -50,10 +50,9 @@ const Tarefas = () =>{
   const loadTasks = async () => {
 
     try {
-      const response = await api.get("tarefas");
-      
-      
-      setTasks(response.data)
+      const response = await api.get(`usuarios/${user.id}?_embed=tarefas`);      
+      const listaTarefas = response.data.tarefas
+      setTasks(listaTarefas)
       
     } catch (err) {
       Alert.alert("","Falha ao recuperar as tarefas.",[{text:'ok'}])
@@ -115,8 +114,6 @@ const Tarefas = () =>{
     percentualTarefasRealizadas();
   }, [])
 
-  const tarefas = tasks.filter(t => t.usuarioId == user.id)
-
   return (
     <Container>
       <ImageBackground source={bg} style ={{height: 150, width: 400}}>
@@ -133,7 +130,7 @@ const Tarefas = () =>{
 
       <Tasks showsVerticalScrollIndicator={false}>
         
-      {tarefas.map(task => (
+      {tasks.map(task => (
 
         <Item label={task} handle={handleTasks} handleRemove={handleRemoveTask}/>
 
