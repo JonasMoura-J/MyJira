@@ -27,6 +27,9 @@ import logo from '../../../assets/logo2.png'
 import ProgressCircle from 'react-native-progress-circle';
 
 import { ProjetoIdContext } from '../../../../contexts/projeto';
+import Item from '../../../components/Item';
+import ProgressLine from '../../../components/ProgressLine';
+import ItemInput from '../../../components/ItemInput';
 
 const AFazer = () => {
 
@@ -125,69 +128,24 @@ const AFazer = () => {
           <Image source={logo} style ={{height: 45, width: 45, margin: 8}}/>
           <TextLogo>MyJira</TextLogo>
         </Logo>
-        <FormEnviar>
-          <Input
-            placeholder="Incluir afazer..."
-            onChangeText={(letras) => { setNewTask(letras) }}
-            value={newTask}
-          />
-          <Button onPress={handleAddTasks}>
-            <TextButton>Criar</TextButton>
-          </Button>
-        </FormEnviar>
+
+        <ItemInput input={newTask} setInput={setNewTask} handleAdd={handleAddTasks}/>
+        
       </ImageBackground>
 
-      <ProgressContainer>
-        <ProgressCircle
-          percent={percentual}
-          radius={70}
-          borderWidth={7}
-          color="#3aa4d4"
-          shadowColor="#999"
-          bgColor="#1c1c1c"
-        >
-        <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{`${percentual.toFixed(0)}%`}</Text>
-      </ProgressCircle>
-    </ProgressContainer>
+      <ProgressLine percent={percentual} textPercent={`${percentual.toFixed(0)}%`}/>
 
       <Tasks showsVerticalScrollIndicator={false}>
 
+        {afazeres.map(a =>          
 
-        {afazeres.map(a =>
-          
-          <TaskContainer key={a.id} finalizado={a.concluido}>
-           
-          <TaskText>{a.descricao}</TaskText>
-          
-        <TaskActions>
-        <BoxIcon>
-          <Icon
-            name="trash-alt"
-            color="#ca0000"
-            size={30}
-            onPress={() => {handleRemoveTask(a)}}
-          />
-
-        </BoxIcon>
-        <BoxIcon>
-          <Icon
-            name={a.concluido ? "check" : "clock"}
-            color={a.concluido ? "#a4d43a" : "#000"}
-            size={30}
-            onPress={() => { handleTasks(a)}}
-          />
-        </BoxIcon>
-         </TaskActions>
-        
-       </TaskContainer>
-
+          <Item label={a} handle={handleTasks} handleRemove={handleRemoveTask}/>
         )}
+
       </Tasks>
     </Container>
-
         
   )
-
 }
 
 export default AFazer;

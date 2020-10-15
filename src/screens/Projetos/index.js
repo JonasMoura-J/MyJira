@@ -24,6 +24,7 @@ import logo from '../../assets/logo2.png'
 
 import { UsuarioContext } from '../../../contexts/user';
 import { ProjetoIdContext } from '../../../contexts/projeto';
+import Item from '../../components/Item';
 
 const Projetos = () => {
 
@@ -117,47 +118,18 @@ const Projetos = () => {
         <Image source={logo} style ={{height: 45, width: 45, margin: 8}}/>
         <TextLogo>MyJira</TextLogo>
       </Logo>
-      <FormEnviar>
-        <Input
-          placeholder="Incluir projeto..."
-          onChangeText={(letras) => { setNewProject(letras) }}
-          value={newProject}
-        />
-        <Button onPress={handleAddProject}>
-          <TextButton>Criar</TextButton>
-        </Button>
-      </FormEnviar>
+
+      <ItemInput input={newProject} setInput={setNewProject} handleAdd={handleAddTasks}/>
+
       </ImageBackground>
 
       <Projects showsVerticalScrollIndicator={false}>
 
         {projetos.map(p => (
         <ButtonProjects key={p.id} onPress={()=> handleIdProject(p.id)}>
-          <ProjectContainer finalizado={p.concluido}>
-           
-              <ProjectText>{p.descricao}</ProjectText>
-              
-            <ProjectActions>
-            <BoxIcon>
-              <Icon
-                name="trash-alt"
-                color="#ca0000"
-                size={30}
-                onPress={() => {handleRemoveProject(p)}}
-              />
 
-            </BoxIcon>
-            <BoxIcon>
-              <Icon
-                name={p.concluido ? "check" : "clock"}
-                color={p.concluido ? "#a4d43a" : "#000"}
-                size={30}
-                onPress={() => { handleProject(p)}}
-              />
-            </BoxIcon>
-             </ProjectActions>
-            
-           </ProjectContainer>
+          <Item label={p} handle={handleProject} handleRemove={handleRemoveProject}/>
+
          </ButtonProjects>
         )
         )}

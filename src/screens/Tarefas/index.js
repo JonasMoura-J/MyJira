@@ -25,6 +25,8 @@ import bg from '../../assets/fundo.jpg'
 import logo from '../../assets/logo2.png'
 import ProgressCircle from 'react-native-progress-circle';
 import ProgressLine from '../../components/ProgressLine';
+import Item from '../../components/Item';
+import ItemInput from '../../components/ItemInput';
 
 const Tarefas = () =>{
 
@@ -122,59 +124,21 @@ const Tarefas = () =>{
         <Image source={logo} style ={{height: 45, width: 45, margin: 8}}/>
         <TextLogo>MyJira</TextLogo>
       </Logo>
-      <FormEnviar>
-        <Input
-          placeholder="Incluir tarefas..."
-          onChangeText={(letras) => { setNewTask(letras) }}
-          value={newTask}
-        />
-        <Button onPress={handleAddTasks}>
-          <TextButton>Criar</TextButton>
-        </Button>
-        
-        </FormEnviar>
+
+      <ItemInput input={newTask} setInput={setNewTask} handleAdd={handleAddTasks}/>
+
       </ImageBackground>
+      
       <ProgressLine percent={percentual} textPercent={`${percentual.toFixed(0)}%`}/>
-        {/* <ProgressContainer>
-          <ProgressCircle
-            percent={percentual}
-            radius={70}
-            borderWidth={7}
-            color="#3aa4d4"
-            shadowColor="#999"
-            bgColor="#1c1c1c"
-          >
-          <Text style={{ fontSize: 25, color: "#fff", fontWeight: "bold" }}>{`${percentual.toFixed(0)}%`}</Text>
-          </ProgressCircle>
-      </ProgressContainer> */}
 
       <Tasks showsVerticalScrollIndicator={false}>
+        
       {tarefas.map(task => (
-            <TaskContainer key={task.id} finalizado={task.concluido}>
 
-            <TaskText>{task.descricao}</TaskText>
+        <Item label={task} handle={handleTasks} handleRemove={handleRemoveTask}/>
 
-          <TaskActions>
-          <BoxIcon>
-            <Icon
-              name="trash-alt"
-              color="#ca0000"
-              size={30}
-              onPress={() => { handleRemoveTask(task) }}
-            />
-          </BoxIcon>
-          <BoxIcon>
-            <Icon
-              name={task.concluido ? "check" : "clock"}
-              color={task.concluido ? "#a4d43a" : "#000"}
-              size={30}
-              onPress={() => { handleTasks(task)}}
-            /> 
-          </BoxIcon>
-           </TaskActions>
-
-         </TaskContainer>
       ))}
+
       </Tasks>
     </Container>  
   )

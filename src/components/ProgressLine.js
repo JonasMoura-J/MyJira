@@ -22,6 +22,7 @@ const ProgressLine = (props) =>{
             value={props.percent}
             backgroundColorOnComplete="#6CC644"
             useNativeDriver = {true}
+            title ={`${props.percent.toFixed(0)}%`}
             />
           </View>
     );
